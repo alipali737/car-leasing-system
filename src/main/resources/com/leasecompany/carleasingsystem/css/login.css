@@ -1,0 +1,67 @@
+@font-face {
+    src: url("../fonts/IBMPlexSans-Regular.ttf");
+}
+
+* {
+    -fx-base-grey: #F8F9FA;
+    -fx-base-primary: #007BFF;
+    -fx-base-danger: #DC3545;
+    -fx-base-submit: #28A745;
+}
+
+.root-node {
+    -fx-background-color: -fx-base-grey;
+}
+
+.drop-shadow-sides {
+    -fx-effect: dropshadow(
+        three-pass-box,
+        rgba(0, 0, 0, 0.25),
+        12,
+        0,
+        0,
+        0
+    );
+}
+
+.drop-shadow-all {
+    -fx-effect: dropshadow(
+        three-pass-box,
+        rgba(0,0,0,0.25),
+        12,
+        0,
+        0,
+        0
+    );
+}
+
+.text-entry {
+    -fx-background-color: -fx-base-grey;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #C4CCD4;
+}
+
+.submit-button {
+    -fx-background-color: -fx-base-submit;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+}
+
+.action-button {
+    -fx-background-color: -fx-base-primary;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+}
+
+.danger-button {
+    -fx-background-color: -fx-base-danger;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+}
+
+.hyperlink-text {
+    -fx-text-fill: -fx-base-primary;
+    -fx-underline: true;
+    -fx-alignment: center;
+}

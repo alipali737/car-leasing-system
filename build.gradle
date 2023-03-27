@@ -25,7 +25,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.leasecompany.carleasingsystem'
-    mainClass = 'com.leasecompany.carleasingsystem.HelloApplication'
+    mainClass = 'com.leasecompany.carleasingsystem.Main'
 }
 
 javafx {
@@ -42,6 +42,7 @@ dependencies {
         exclude(group: 'org.openjfx')
     }
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.0')
+    implementation 'org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1'
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
@@ -62,4 +63,13 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java", "src/main/resources"]
+            includes = ["**/*.css", "**/*.jpg", "**/*.png", "**/*.fxml", "**/*.ttf"]
+        }
+    }
 }
