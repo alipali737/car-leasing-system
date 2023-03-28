@@ -1,11 +1,9 @@
 package com.leasecompany.carleasingsystem.ui.login;
 
+import com.leasecompany.carleasingsystem.ui.CustomValidationDecoration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
 
@@ -35,19 +33,44 @@ public class RegisterController {
 
 
     private void handleRegisterButtonClick(ActionEvent event) {
-        // TODO: Validate name (length, characters)
+        // Validate name (length, characters)
         validator.createCheck()
                 .dependsOn("name", nameField.textProperty())
                 .withMethod(c -> {
                     String name = c.get("name");
-                    if (name.length() < 3 || name.length() > 25) {
+                    if (name.length() < 3 || name.length() > 25 || !name.matches("^[a-zA-Z]*$")) {
                         c.error("Please keep your name between 3 and 25 characters.");
                     }
                 })
                 .decorates(nameField)
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
+                .immediate();
+
+        validator.createCheck()
+                .dependsOn("name", nameField.textProperty())
+                .withMethod(c -> {
+                    String name = c.get("name");
+                    if (!name.matches("^[a-zA-Z]*$")) {
+                        c.error("Please only include letters, no special characters.");
+                    }
+                })
+                .decorates(nameField)
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
                 .immediate();
 
         // TODO: Validate email (format)
+        validator.createCheck()
+                .dependsOn("email", emailField.textProperty())
+                .withMethod(c -> {
+                    String email = c.get("email");
+                    if (!isEmailAddressFormat(email)) {
+                        c.error("Must follow the email address format: user@domain.ext");
+                    }
+                })
+                .decorates(emailField)
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
+                .immediate();
+
         // TODO: Validate passwords (the same)
         // TODO: Add user to DB
         // TODO: Change screen to confirmation

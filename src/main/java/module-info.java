@@ -13,4 +13,6 @@ module com.leasecompany.carleasingsystem {
     exports com.leasecompany.carleasingsystem;
     exports com.leasecompany.carleasingsystem.ui.login;
     opens com.leasecompany.carleasingsystem.ui.login to javafx.fxml;
+    exports com.leasecompany.carleasingsystem.ui;
+    opens com.leasecompany.carleasingsystem.ui to javafx.fxml;
 }
