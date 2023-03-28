@@ -1,6 +1,7 @@
 package com.leasecompany.carleasingsystem.ui.login;
 
 import com.leasecompany.carleasingsystem.ui.CustomValidationDecoration;
+import com.leasecompany.carleasingsystem.utils.validation.InputValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -38,7 +39,7 @@ public class RegisterController {
                 .dependsOn("name", nameField.textProperty())
                 .withMethod(c -> {
                     String name = c.get("name");
-                    if (name.length() < 3 || name.length() > 25 || !name.matches("^[a-zA-Z]*$")) {
+                    if (InputValidation.lengthInRange(name, 3, 25)) {
                         c.error("Please keep your name between 3 and 25 characters.");
                     }
                 })
@@ -50,7 +51,7 @@ public class RegisterController {
                 .dependsOn("name", nameField.textProperty())
                 .withMethod(c -> {
                     String name = c.get("name");
-                    if (!name.matches("^[a-zA-Z]*$")) {
+                    if (!InputValidation.onlyContainsLetters(name)) {
                         c.error("Please only include letters, no special characters.");
                     }
                 })
@@ -63,7 +64,7 @@ public class RegisterController {
                 .dependsOn("email", emailField.textProperty())
                 .withMethod(c -> {
                     String email = c.get("email");
-                    if (!isEmailAddressFormat(email)) {
+                    if (!InputValidation.isValidEmailAddress(email)) {
                         c.error("Must follow the email address format: user@domain.ext");
                     }
                 })
@@ -72,6 +73,21 @@ public class RegisterController {
                 .immediate();
 
         // TODO: Validate passwords (the same)
+        validator.createCheck()
+                .dependsOn("password", passwordField.textProperty())
+                .dependsOn("conf-password", confPasswordField.textProperty())
+                .withMethod(c -> {
+                    String password = c.get("password");
+                    String confPassword = c.get("conf-password");
+                    if (!password.equals(confPassword)) {
+                        c.error("Password entries do not match.");
+                    }
+                })
+                .decorates(passwordField)
+                .decorates(confPasswordField)
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
+                .immediate();
+
         // TODO: Add user to DB
         // TODO: Change screen to confirmation
     }
