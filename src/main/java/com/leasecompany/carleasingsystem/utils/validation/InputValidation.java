@@ -19,12 +19,12 @@ public class InputValidation {
         return pattern.matcher(email).matches();
     }
 
-    /**
+    /** 628 109 903
      * Checks if a string only contains letters [a-zA-Z], no special characters allowed
      * @param sample String
      */
     public static boolean onlyContainsLetters(String sample) {
-        return sample.matches("^[a-zA-Z]*$");
+        return sample.matches("^[a-zA-Z]+$");
     }
 
     /**

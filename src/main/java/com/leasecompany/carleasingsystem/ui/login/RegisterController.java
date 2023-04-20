@@ -1,11 +1,14 @@
 package com.leasecompany.carleasingsystem.ui.login;
 
-import com.leasecompany.carleasingsystem.ui.CustomValidationDecoration;
+import com.leasecompany.carleasingsystem.utils.scene.SceneController;
+import com.leasecompany.carleasingsystem.utils.validation.CustomValidationDecoration;
 import com.leasecompany.carleasingsystem.utils.validation.InputValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import net.synedra.validatorfx.Validator;
 
 public class RegisterController {
@@ -30,22 +33,17 @@ public class RegisterController {
 
         validator = new Validator();
 
-    }
-
-
-    private void handleRegisterButtonClick(ActionEvent event) {
         // Validate name (length, characters)
         validator.createCheck()
                 .dependsOn("name", nameField.textProperty())
                 .withMethod(c -> {
                     String name = c.get("name");
-                    if (InputValidation.lengthInRange(name, 3, 25)) {
+                    if (!InputValidation.lengthInRange(name, 3, 25)) {
                         c.error("Please keep your name between 3 and 25 characters.");
                     }
                 })
                 .decorates(nameField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
-                .immediate();
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
 
         validator.createCheck()
                 .dependsOn("name", nameField.textProperty())
@@ -56,10 +54,9 @@ public class RegisterController {
                     }
                 })
                 .decorates(nameField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
-                .immediate();
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
 
-        // TODO: Validate email (format)
+        // Validate email (format)
         validator.createCheck()
                 .dependsOn("email", emailField.textProperty())
                 .withMethod(c -> {
@@ -69,10 +66,20 @@ public class RegisterController {
                     }
                 })
                 .decorates(emailField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
-                .immediate();
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
 
-        // TODO: Validate passwords (the same)
+        // Validate passwords (length, the same)
+        validator.createCheck()
+                .dependsOn("password", passwordField.textProperty())
+                .withMethod(c -> {
+                    String name = c.get("password");
+                    if (!InputValidation.lengthInRange(name, 8, 50)) {
+                        c.error("Please keep your password between 8 and 50 characters.");
+                    }
+                })
+                .decorates(passwordField)
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
+
         validator.createCheck()
                 .dependsOn("password", passwordField.textProperty())
                 .dependsOn("conf-password", confPasswordField.textProperty())
@@ -85,22 +92,19 @@ public class RegisterController {
                 })
                 .decorates(passwordField)
                 .decorates(confPasswordField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()))
-                .immediate();
-
-        // TODO: Add user to DB
-        // TODO: Change screen to confirmation
+                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
     }
 
 
+    private void handleRegisterButtonClick(ActionEvent event) {
+        if (validator.validate()) {
+            // TODO: Add user to DB
+            // Change screen to confirmation
+            SceneController.changeScene(new RegisterConfirmationApp(), registerButton);
+        }
+    }
 
     private void handleLoginLinkClick(ActionEvent event) {
-        LoginApp loginApp = new LoginApp();
-        Stage primaryStage = (Stage) loginLink.getScene().getWindow();
-        try {
-            loginApp.start(primaryStage);
-        } catch (Exception e) {
-            System.out.println("Unable to switch to loginScene: "+e.getMessage());
-        }
+        SceneController.changeScene(new LoginApp(), loginLink);
     }
 }

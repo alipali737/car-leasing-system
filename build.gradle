@@ -13,7 +13,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.8.2'
+    junitVersion = '5.9.2'
 }
 
 sourceCompatibility = '17'
@@ -34,6 +34,17 @@ javafx {
 }
 
 dependencies {
+    implementation 'org.hibernate:hibernate-core:6.2.0.Final'
+    runtimeOnly 'org.xerial:sqlite-jdbc:3.41.2.1'
+
+    implementation 'javax.interceptor:javax.interceptor-api:1.2'
+    implementation 'jakarta.interceptor:jakarta.interceptor-api:2.1.0'
+    implementation 'org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final'
+    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
+
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    implementation 'com.fasterxml:classmate:1.5.1'
+
     implementation('org.controlsfx:controlsfx:11.1.1')
     implementation('com.dlsc.formsfx:formsfx-core:11.3.2') {
         exclude(group: 'org.openjfx')
@@ -44,8 +55,13 @@ dependencies {
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.0')
     implementation 'org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1'
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:${junitVersion}",
+            "org.junit.jupiter:junit-jupiter-api:${junitVersion}",
+            "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    )
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
@@ -68,8 +84,8 @@ jlinkZip {
 sourceSets {
     main {
         resources {
-            srcDirs = ["src/main/java", "src/main/resources"]
-            includes = ["**/*.css", "**/*.jpg", "**/*.png", "**/*.fxml", "**/*.ttf"]
+            srcDirs = ["src/main/java", "src/test/java", "src/main/resources"]
+            includes = ["**/*.css", "**/*.jpg", "**/*.png", "**/*.fxml", "**/*.ttf", "**/*.xml"]
         }
     }
 }

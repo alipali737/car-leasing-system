@@ -1,9 +1,9 @@
 package com.leasecompany.carleasingsystem.ui.login;
 
+import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 public class LoginFailedController {
     @FXML
@@ -14,12 +14,6 @@ public class LoginFailedController {
     }
 
     private void handleReturnButtonClick(ActionEvent event){
-        LoginApp loginApp = new LoginApp();
-        Stage primaryStage = (Stage) returnToLoginButton.getScene().getWindow();
-        try {
-            loginApp.start(primaryStage);
-        } catch (Exception e) {
-            System.out.println("Unable to switch to loginScene: "+e.getMessage());
-        }
+        SceneController.changeScene(new LoginApp(), returnToLoginButton);
     }
 }

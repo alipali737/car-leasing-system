@@ -1,4 +1,4 @@
-package com.leasecompany.carleasingsystem.ui;
+package com.leasecompany.carleasingsystem.utils.validation;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
@@ -13,6 +13,10 @@ public class CustomValidationDecoration implements Decoration {
         this.errorMessage = errorMessage;
     }
 
+    /* Overrides the default behaviour of the remove decorator for the validator
+        - Removes any styling added
+        - Removes the hover tooltip
+     */
     @Override
     public void remove(Node node) {
         node.setStyle(null);
@@ -22,12 +26,17 @@ public class CustomValidationDecoration implements Decoration {
         }
     }
 
+    /* Overrides the default behaviour of the add decorator for the validator
+        - Adds a red border using CSS styling
+        - Creates the hover tooltip using the error message set in the constructor
+        - Configures & styles the tooltip
+     */
     @Override
     public void add(Node node) {
         node.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-style: solid;");
         Tooltip tooltip = new Tooltip(errorMessage);
         tooltip.setStyle("-fx-font-size: 14px; -fx-background-color: red; -fx-text-fill: white;");
-        tooltip.setShowDelay(Duration.ZERO);
+        tooltip.setShowDelay(Duration.millis(250));
         tooltip.setShowDuration(Duration.INDEFINITE);
         Tooltip.install(node, tooltip);
         node.setUserData(tooltip);
