@@ -27,7 +27,7 @@ public interface GenericDAO<T, ID extends Serializable> {
 
     /**
      * Create a new entry of the entity object in the database
-     * @param entity
+     * @param entity - entity to be created
      * @return boolean
      */
     boolean create(T entity);

@@ -1,6 +1,5 @@
 package com.leasecompany.carleasingsystem.database.data;
 
-import jakarta.persistence.criteria.Expression;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
-    private final SessionFactory sessionFactory;
+    protected final SessionFactory sessionFactory;
     private final Class<T> entityType;
 
     public GenericDAOImpl(Class<T> tClass, SessionFactory sessionFactory) {
@@ -62,8 +61,8 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
 
                 JpaPath<?> fieldExpression = root.get(fieldName);
                 if (fieldValue instanceof String) {
-                    // If its a string, create a criteria 'WHERE fieldName LIKE %fieldValue%'
-                    predicates.add(builder.like(builder.upper((Expression<String>) fieldExpression),
+                    // If it's a string, create a criteria 'WHERE fieldName LIKE %fieldValue%'
+                    predicates.add(builder.like(builder.upper((JpaExpression<String>) fieldExpression),
                             "%" + fieldValue + "%"));
                 } else {
                     // else, create a criteria 'WHERE fieldName = fieldValue'

@@ -1,7 +1,19 @@
 * {
     -fx-base-grey: #F8F9FA;
+
     -fx-base-aqua: #00E5CB;
+    -fx-base-aqua-darker: #00B8A9;
+    -fx-base-aqua-lighter: #33FFF5;
+
     -fx-base-primary: #007BFF;
+    -fx-base-primary-darker: #0052CC;
+    -fx-base-primary-lighter: #5C9FFF;
+
     -fx-base-danger: #DC3545;
+    -fx-base-danger-darker: #B02A37;
+    -fx-base-danger-lighter: #FF6D7A;
+
     -fx-base-submit: #28A745;
+    -fx-base-submit-darker: #1E7E34;
+    -fx-base-submit-lighter: #66C168;
 }

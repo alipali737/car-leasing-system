@@ -18,7 +18,7 @@ public class DAOFactory {
         }
     }
 
-    public CarDAO getCarDAO() {
+    public CarDAO newCarDAO() {
         return new CarDAOImpl(sessionFactory);
     }
 }

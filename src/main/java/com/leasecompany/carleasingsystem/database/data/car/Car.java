@@ -1,12 +1,17 @@
 package com.leasecompany.carleasingsystem.database.data.car;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cars")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "doors")
@@ -170,4 +175,9 @@ public class Car {
     public void setValue(int value) {
         this.value = value;
     }
+
+    public static final ObservableList<String> makeDropdownOptions = FXCollections.observableList(List.of("Any Make", "Audi", "BMW", "Ford", "Nissan", "Porsche", "Volkswagen"));
+    public static final ObservableList<String> typeDropdownOptions = FXCollections.observableList(List.of("Any Type", "Saloon", "Hatchback", "Convertible", "Coupe", "Estate", "Seven-Seater", "SUV", "Hybrid", "Electric"));
+    public static final ObservableList<String> budgetDropdownOptions = FXCollections.observableList(List.of("Any Budget", "Up to £150", "Up to £250", "Up to £350", "Up to £500", "Up to £750", "Up to £1000"));
+
 }

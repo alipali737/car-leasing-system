@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection information -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/main</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">password1</property>
+        <property name="connection.pool_size">10</property>
+        <property name="current_session_context_class">thread</property>
+
+        <!-- SQL dialect for MySQL -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Disable second-level cache -->
+<!--        <property name="hibernate.cache.use_second_level_cache">false</property>-->
+
+        <!-- Show SQL statements in console -->
+        <property name="show_sql">false</property>
+        <property name="format_sql">true</property>
+
+        <!-- Mapping files -->
+        <mapping resource="Car.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

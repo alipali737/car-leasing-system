@@ -34,17 +34,30 @@ javafx {
 }
 
 dependencies {
-    implementation 'org.hibernate:hibernate-core:6.2.0.Final'
-    runtimeOnly 'org.xerial:sqlite-jdbc:3.41.2.1'
+    // --- Hibernate packages ---
+    implementation ('org.hibernate.orm:hibernate-core:6.2.1.Final') {
+        exclude(group: 'org.jboss.logging')
+        exclude(group: 'jakarta.xml.bind')
+        exclude(group: 'com.fasterxml.classmate')
+    }
+    implementation 'org.hibernate.common:hibernate-commons-annotations:6.0.6.Final'
 
-    implementation 'javax.interceptor:javax.interceptor-api:1.2'
-    implementation 'jakarta.interceptor:jakarta.interceptor-api:2.1.0'
-    implementation 'org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final'
-    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
+    // --- SQL JDBC Driver ---
+    implementation 'mysql:mysql-connector-java:8.0.32'
 
+    // --- Dependencies required by Hibernate Implementation---
+    implementation 'org.jboss.logging:jboss-logging:3.4.1.Final'
     implementation 'javax.persistence:javax.persistence-api:2.2'
+
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
     implementation 'com.fasterxml:classmate:1.5.1'
 
+    implementation 'net.bytebuddy:byte-buddy:1.14.4'
+
+    // --- Extra UI Dependencies ---
     implementation('org.controlsfx:controlsfx:11.1.1')
     implementation('com.dlsc.formsfx:formsfx-core:11.3.2') {
         exclude(group: 'org.openjfx')
@@ -55,6 +68,8 @@ dependencies {
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.0')
     implementation 'org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1'
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+
+    // --- JUnit Test Dependencies ---
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     testImplementation(

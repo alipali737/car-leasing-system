@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.leasecompany.carleasingsystem.database.data.car.Car" table = "cars">
+        <id name = "id" column="id" type="int">
+            <generator class="identity" />
+        </id>
+        <property name="doors" column="doors" type="int" />
+        <property name="engineSize" column="engine_size" type="double" />
+        <property name="color" column="color" type="string" />
+        <property name="fuelType" column="fuel_type" type="string" />
+        <property name="seats" column="seats" type="int" />
+        <property name="bodyType" column="body_type" type="string" />
+        <property name="brand" column="brand" type="string" />
+        <property name="model" column="model" type="string" />
+        <property name="spec" column="spec" type="string" />
+        <property name="prodYear" column="prod_year" type="int" />
+        <property name="description" column="description" type="string" />
+        <property name="registration" column="registration" type="string" />
+        <property name="mileage" column="mileage" type="int" />
+        <property name="value" column="value" type="int" />
+    </class>
+</hibernate-mapping>

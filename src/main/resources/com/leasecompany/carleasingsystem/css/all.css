@@ -43,6 +43,11 @@
     -fx-background-radius: 27;
 }
 
+.combo-box-base:hover {
+    -fx-background-color: -fx-base-aqua-darker;
+    -fx-cursor: hand;
+}
+
 .combo-box .list-cell {
     -fx-text-fill: white;
     -fx-background-color: transparent;
@@ -66,10 +71,20 @@
     -fx-text-fill: white;
 }
 
+.submit-button:hover {
+    -fx-background-color: -fx-base-submit-darker;
+    -fx-cursor: hand;
+}
+
 .action-button {
     -fx-background-color: -fx-base-primary;
     -fx-background-radius: 10;
     -fx-text-fill: white;
+}
+
+.action-button:hover {
+    -fx-background-color: -fx-base-primary-darker;
+    -fx-cursor: hand;
 }
 
 .danger-button {
@@ -78,15 +93,29 @@
     -fx-text-fill: white;
 }
 
+.danger-button:hover {
+    -fx-background-color: -fx-base-danger-darker;
+    -fx-cursor: hand;
+}
+
 .hyperlink-text {
     -fx-text-fill: -fx-base-primary;
     -fx-underline: true;
     -fx-alignment: center;
 }
 
+.hyperlink-text:hover {
+    -fx-text-fill: -fx-base-primary-darker;
+    -fx-cursor: hand;
+}
+
 .sidebar-button {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
+}
+
+.sidebar-button:hover {
+    -fx-cursor: hand;
 }
 
 .sidebar-button .label {
@@ -100,6 +129,10 @@
 .sidebar-button .ikonli-font-icon {
     -fx-icon-color: white;
     -fx-icon-size: 65px;
+}
+
+.sidebar-button .ikonli-font-icon:hover {
+    -fx-icon-color: #D6D6D6;
 }
 
 .table-view {

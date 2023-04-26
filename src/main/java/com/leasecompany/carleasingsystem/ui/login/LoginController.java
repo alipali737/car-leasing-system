@@ -63,12 +63,7 @@ public class LoginController {
         String password = passwordField.getText();
 
         if (authenticate(username, password)) {
-            // TODO: authenticated, move to home screen
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Login Successful");
-            alert.setHeaderText("Welcome, "+username+"!");
-            alert.setContentText("You have been successfully authenticated.");
-            alert.showAndWait();
+            // authenticated, move to home screen
             SceneController.changeScene(new HomeApp(), loginButton);
         } else {
             // auth rejected, move to failed screen
