@@ -39,11 +39,14 @@ public class HomeController {
     private InventoryItemDAO inventoryItemDAO;
 
     public void initialize() {
+        // Setup button handler
         updateButton.setOnAction(this::handleUpdateButton);
 
+        // Create database DAOs
         CarDAO carDAO = DAOFactory.getInstance().newCarDAO();
         inventoryItemDAO = DAOFactory.getInstance().newInventoryItemDAO();
 
+        // Populate filter options
         ObservableList<String> uniqueBrands = FXCollections.observableList(carDAO.getUniqueStringValuesInColumn("brand"));
         uniqueBrands.add(0, "Any Make");
         setComboBoxOptions(makeComboBox, uniqueBrands);
@@ -55,6 +58,8 @@ public class HomeController {
         ObservableList<String> budgetDropdownOptions = FXCollections.observableList(List.of("Any Budget", "Up to £150", "Up to £250", "Up to £350", "Up to £500", "Up to £750", "Up to £1000"));
         setComboBoxOptions(budgetComboBox, budgetDropdownOptions);
 
+        // Configure Table
+        // Make table results clickable for scene change
         resultsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -63,6 +68,7 @@ public class HomeController {
             }
         });
 
+        // Setup CellValueFactories for columns in table
         TableColumn<Car, Long> idColumn = (TableColumn<Car, Long>) resultsTable.getColumns().get(0);
         idColumn.setCellValueFactory(new PropertyValueFactory<Car, Long>("id"));
 
@@ -79,7 +85,10 @@ public class HomeController {
         doorsColumn.setCellValueFactory(new PropertyValueFactory<Car, Integer>("doors"));
 
         TableColumn<Car, String> engineColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(4);
-        engineColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("engineSize"));
+        engineColumn.setCellValueFactory(data -> {
+            Car car = data.getValue();
+            return new SimpleStringProperty(String.valueOf(car.getEngineSize()) + "L");
+        });
 
         TableColumn<Car, String> colourColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(5);
         colourColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("color"));
@@ -87,7 +96,7 @@ public class HomeController {
         TableColumn<Car, String> priceColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(6);
         priceColumn.setCellValueFactory(data -> {
             Car car = data.getValue();
-            return new SimpleStringProperty("£" + String.valueOf(car.calcMonthlyPaymentPrice(36, 9)) + "/mo");
+            return new SimpleStringProperty("£" + String.valueOf(car.calcMonthlyPaymentPrice(48, 9)) + "/mo");
         });
     }
 
@@ -103,9 +112,11 @@ public class HomeController {
         String selectedBudget = budgetComboBox.getValue();
         String searchBarText = searchBar.getText();
 
+        // Get all instock vehicles
         List<InventoryItem> inventoryItems = inventoryItemDAO.findByCriteria(Map.of("vehicleInStock", true));
         List<Car> filteredCars = new ArrayList<>();
 
+        // For each vehicle check if it meets the criteria
         for (InventoryItem item : inventoryItems) {
             Car itemVehicle = item.getVehicle();
             if (selectedMake != null && !selectedMake.equals("Any Make")) {
@@ -122,7 +133,7 @@ public class HomeController {
 
             if (selectedBudget != null && !selectedBudget.equals("Any Budget")) {
                 double budget = Double.parseDouble(selectedBudget.replaceAll("[^0-9]", ""));
-                if (itemVehicle.calcMonthlyPaymentPrice(36,9) > budget) {
+                if (itemVehicle.calcMonthlyPaymentPrice(48,9) > budget) {
                     continue;
                 }
             }
@@ -136,6 +147,7 @@ public class HomeController {
             filteredCars.add(itemVehicle);
         }
 
+        // Display results
         ObservableList<Car> data = FXCollections.observableArrayList(filteredCars);
         resultsTable.setItems(data);
     }

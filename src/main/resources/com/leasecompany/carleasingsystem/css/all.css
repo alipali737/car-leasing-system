@@ -140,7 +140,7 @@
 }
 
 .sidebar-button .ikonli-font-icon:hover {
-    -fx-icon-color: #D6D6D6;
+    -fx-icon-color: -fx-base-grey-darker;
 }
 
 .table-view {
@@ -171,5 +171,23 @@
 }
 
 .table-view .table-cell:hover {
+    -fx-cursor: hand;
+}
+
+.toggle-button {
+    -fx-border-style: solid;
+    -fx-border-color: -fx-base-aqua;
+    -fx-text-fill: -fx-base-grey-darker;
+    -fx-background-color: transparent;
+}
+
+.toggle-button:selected {
+    -fx-text-fill: white;
+    -fx-background-color: -fx-base-aqua;
+}
+
+.toggle-button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: -fx-base-aqua;
     -fx-cursor: hand;
 }
