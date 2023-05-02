@@ -1,8 +1,8 @@
 CREATE DATABASE  IF NOT EXISTS `main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `main`;
--- MySQL dump 10.13  Distrib 8.0.33, for macos13 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: main
+-- Host: localhost    Database: main
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
@@ -40,8 +40,7 @@ CREATE TABLE `cars` (
   `registration` varchar(255) NOT NULL,
   `mileage` int NOT NULL,
   `value` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,8 +78,7 @@ CREATE TABLE `customers` (
   `payment_card_expiry_year` int NOT NULL,
   `payment_card_cvv` varchar(255) NOT NULL,
   `dob` date NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,9 +104,8 @@ CREATE TABLE `inventory_items` (
   `creation_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `vehicle_in_stock` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  KEY `vehicle_id` (`vehicle_id`),
-  CONSTRAINT `vehicle_id` FOREIGN KEY (`vehicle_id`) REFERENCES `cars` (`id`)
+  KEY `fk_vehicle_id` (`vehicle_id`),
+  CONSTRAINT `fk_vehicle_id` FOREIGN KEY (`vehicle_id`) REFERENCES `cars` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,11 +139,10 @@ CREATE TABLE `lease_agreements` (
   `annual_mileage_allowed` int NOT NULL,
   `policy_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `inventory_item_id` (`inventory_item_id`),
-  CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  CONSTRAINT `inventory_item_id` FOREIGN KEY (`inventory_item_id`) REFERENCES `inventory_items` (`id`)
+  KEY `fk_customer_id` (`customer_id`),
+  KEY `fk_inventory_item_id` (`inventory_item_id`),
+  CONSTRAINT `fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+  CONSTRAINT `fk_inventory_item_id` FOREIGN KEY (`inventory_item_id`) REFERENCES `inventory_items` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -171,8 +167,7 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -194,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-02 11:01:28
+-- Dump completed on 2023-05-02 15:03:52

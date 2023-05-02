@@ -1,54 +1,20 @@
 package com.leasecompany.carleasingsystem.database.data.car;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "cars")
 public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "doors")
     private int doors;
-
-    @Column(name = "engine_size")
     private double engineSize;
-
-    @Column(name = "color")
     private String color;
-
-    @Column(name = "fuel_type")
     private String fuelType;
-
-    @Column(name = "seats")
     private int seats;
-
-    @Column(name = "body_type")
     private String bodyType;
-
-    @Column(name = "brand")
     private String brand;
-
-    @Column(name = "model")
     private String model;
-
-    @Column(name = "spec")
     private String spec;
-
-    @Column(name = "prod_year")
     private int prodYear;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "registration")
     private String registration;
-
-    @Column(name = "mileage")
     private int mileage;
-
-    @Column(name = "value")
     private int value;
 
     public Long getId() {

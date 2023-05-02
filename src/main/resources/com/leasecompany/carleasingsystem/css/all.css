@@ -166,4 +166,10 @@
 .table-view .table-cell {
     -fx-border-style: solid;
     -fx-border-color: -fx-base-grey;
+    -fx-alignment: center;
+    -fx-font-size: 18px;
+}
+
+.table-view .table-cell:hover {
+    -fx-cursor: hand;
 }

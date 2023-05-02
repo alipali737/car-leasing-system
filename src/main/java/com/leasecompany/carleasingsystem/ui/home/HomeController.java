@@ -6,14 +6,15 @@ import com.leasecompany.carleasingsystem.database.data.car.CarDAO;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItem;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItemDAO;
 import com.leasecompany.carleasingsystem.ui.shared.SidebarController;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +34,14 @@ public class HomeController {
     @FXML
     private TextField searchBar;
     @FXML
-    private TableView resultsTable;
+    private TableView<Car> resultsTable;
 
-    private CarDAO carDAO;
     private InventoryItemDAO inventoryItemDAO;
 
     public void initialize() {
         updateButton.setOnAction(this::handleUpdateButton);
 
-        carDAO = DAOFactory.getInstance().newCarDAO();
+        CarDAO carDAO = DAOFactory.getInstance().newCarDAO();
         inventoryItemDAO = DAOFactory.getInstance().newInventoryItemDAO();
 
         ObservableList<String> uniqueBrands = FXCollections.observableList(carDAO.getUniqueStringValuesInColumn("brand"));
@@ -54,6 +54,41 @@ public class HomeController {
 
         ObservableList<String> budgetDropdownOptions = FXCollections.observableList(List.of("Any Budget", "Up to £150", "Up to £250", "Up to £350", "Up to £500", "Up to £750", "Up to £1000"));
         setComboBoxOptions(budgetComboBox, budgetDropdownOptions);
+
+        resultsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Car selectedCar = resultsTable.getSelectionModel().getSelectedItem();
+                System.out.printf("Selected vehicle id: %d\n", selectedCar.getId());
+            }
+        });
+
+        TableColumn<Car, Long> idColumn = (TableColumn<Car, Long>) resultsTable.getColumns().get(0);
+        idColumn.setCellValueFactory(new PropertyValueFactory<Car, Long>("id"));
+
+        TableColumn<Car, String> vehicleColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(1);
+        vehicleColumn.setCellValueFactory(data -> {
+            Car car = data.getValue();
+            return new SimpleStringProperty(car.getBrand() + " " + car.getModel() + " " + car.getSpec());
+        });
+
+        TableColumn<Car, String> fuelColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(2);
+        fuelColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("fuelType"));
+
+        TableColumn<Car, Integer> doorsColumn = (TableColumn<Car, Integer>) resultsTable.getColumns().get(3);
+        doorsColumn.setCellValueFactory(new PropertyValueFactory<Car, Integer>("doors"));
+
+        TableColumn<Car, String> engineColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(4);
+        engineColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("engineSize"));
+
+        TableColumn<Car, String> colourColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(5);
+        colourColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("color"));
+
+        TableColumn<Car, String> priceColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(6);
+        priceColumn.setCellValueFactory(data -> {
+            Car car = data.getValue();
+            return new SimpleStringProperty("£" + String.valueOf(car.calcMonthlyPaymentPrice(36, 9)) + "/mo");
+        });
     }
 
     private void setComboBoxOptions(ComboBox<String> comboBox, ObservableList<String> options) {
@@ -68,14 +103,7 @@ public class HomeController {
         String selectedBudget = budgetComboBox.getValue();
         String searchBarText = searchBar.getText();
 
-        System.out.printf("selectedMake: %s, selectedType: %s, selectedBudget: %s, searchBarText: %s%n", selectedMake, selectedType, selectedBudget, searchBarText);
-
-        // TODO: Get all in stock inventory items
         List<InventoryItem> inventoryItems = inventoryItemDAO.findByCriteria(Map.of("vehicleInStock", true));
-
-        System.out.println(inventoryItems);
-
-        // TODO: filter them based on their vehicle associated
         List<Car> filteredCars = new ArrayList<>();
 
         for (InventoryItem item : inventoryItems) {
@@ -100,7 +128,7 @@ public class HomeController {
             }
 
             if (!searchBarText.isBlank()) {
-                if (!(itemVehicle.getModel() + " " + itemVehicle.getSpec()).contains(searchBarText)) {
+                if (!(itemVehicle.getModel() + " " + itemVehicle.getSpec()).toLowerCase().contains(searchBarText.toLowerCase())) {
                     continue;
                 }
             }
@@ -108,9 +136,7 @@ public class HomeController {
             filteredCars.add(itemVehicle);
         }
 
-        System.out.println(filteredCars);
-
-        // TODO: Get results in a table
-        // TODO: Display the results in the TableView
+        ObservableList<Car> data = FXCollections.observableArrayList(filteredCars);
+        resultsTable.setItems(data);
     }
 }

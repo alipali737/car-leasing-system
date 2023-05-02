@@ -8,7 +8,7 @@
         <id name = "id" column="id" type="long">
             <generator class="identity" />
         </id>
-        <one-to-one name="vehicle" class="com.leasecompany.carleasingsystem.database.data.car.Car" constrained="true" lazy="false"/>
+        <many-to-one name="vehicle" column="vehicle_id" lazy="false" unique="true"/>
         <property name="creation_date" column="creation_date" type="java.util.Date"/>
         <property name="vehicleInStock" column="vehicle_in_stock" type="java.lang.Boolean"/>
     </class>
