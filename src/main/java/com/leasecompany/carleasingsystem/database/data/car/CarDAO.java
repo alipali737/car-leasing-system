@@ -3,14 +3,13 @@ package com.leasecompany.carleasingsystem.database.data.car;
 import com.leasecompany.carleasingsystem.database.data.GenericDAO;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CarDAO extends GenericDAO<Car, Integer> {
     /**
-     * Find all cars that match the given criteria and are labeled as in-stock in their inventory item record
-     * @param criteria map of 'column_name' to 'criteria_value'
-     * @return a list of all entity objects found that match the criteria, and are also in-stock
+     * Returns a list of all unique string values for a column in the database
+     * @param column the database column to search
+     * @return List of unique string values in the passed database column
      */
-    List<Car> findByCriteriaInStock(Map<String, Object> criteria);
+    List<String> getUniqueStringValuesInColumn(String column);
 }
 

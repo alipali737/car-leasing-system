@@ -10,21 +10,24 @@ import java.util.Date;
 public class InventoryItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    private Long id;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
+    private Car vehicle;
 
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
     private Date creation_date;
 
-    @OneToOne
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
-    private Car vehicle;
-
     @Column(name = "vehicle_in_stock")
     private boolean vehicleInStock;
 
-    public int getId() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
         return id;
     }
 

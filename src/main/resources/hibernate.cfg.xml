@@ -14,14 +14,12 @@
         <!-- SQL dialect for MySQL -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- Disable second-level cache -->
-<!--        <property name="hibernate.cache.use_second_level_cache">false</property>-->
-
         <!-- Show SQL statements in console -->
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
         <!-- Mapping files -->
         <mapping resource="Car.hbm.xml"/>
+        <mapping resource="InventoryItem.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

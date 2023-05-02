@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItem" table = "inventory_items">
+        <id name = "id" column="id" type="long">
+            <generator class="identity" />
+        </id>
+        <one-to-one name="vehicle" class="com.leasecompany.carleasingsystem.database.data.car.Car" constrained="true" lazy="false"/>
+        <property name="creation_date" column="creation_date" type="java.util.Date"/>
+        <property name="vehicleInStock" column="vehicle_in_stock" type="java.lang.Boolean"/>
+    </class>
+</hibernate-mapping>

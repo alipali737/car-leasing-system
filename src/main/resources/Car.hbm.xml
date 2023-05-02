@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
     <class name = "com.leasecompany.carleasingsystem.database.data.car.Car" table = "cars">
-        <id name = "id" column="id" type="int">
+        <id name = "id" column="id" type="long">
             <generator class="identity" />
         </id>
         <property name="doors" column="doors" type="int" />
