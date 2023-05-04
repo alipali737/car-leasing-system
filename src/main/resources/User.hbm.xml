@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.leasecompany.carleasingsystem.database.data.user.User" table = "users">
+        <id name = "id" column="id" type="long">
+            <generator class="identity" />
+        </id>
+        <property name="username" column="username" type="string" />
+        <property name="passwordHash" column="password_hash" type="string" />
+        <property name="approved" column="approved" type="boolean" />
+        <property name="admin" column="admin" type="boolean" />
+    </class>
+</hibernate-mapping>

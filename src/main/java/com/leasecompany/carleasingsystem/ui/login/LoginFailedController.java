@@ -1,11 +1,12 @@
 package com.leasecompany.carleasingsystem.ui.login;
 
+import com.leasecompany.carleasingsystem.ui.Controller;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class LoginFailedController {
+public class LoginFailedController implements Controller {
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -14,6 +15,9 @@ public class LoginFailedController {
     }
 
     private void handleReturnButtonClick(ActionEvent event){
-        SceneController.changeScene(new LoginApp(), returnToLoginButton);
+        SceneController.changeScene(SceneController.loginFXMLPath, returnToLoginButton);
     }
+
+    @Override
+    public void recieveInformation(Object data) {}
 }

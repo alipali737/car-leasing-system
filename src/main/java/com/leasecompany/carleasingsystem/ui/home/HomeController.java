@@ -5,22 +5,22 @@ import com.leasecompany.carleasingsystem.database.data.car.Car;
 import com.leasecompany.carleasingsystem.database.data.car.CarDAO;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItem;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItemDAO;
+import com.leasecompany.carleasingsystem.ui.Controller;
 import com.leasecompany.carleasingsystem.ui.shared.SidebarController;
+import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class HomeController {
+public class HomeController implements Controller {
     @FXML
     private SidebarController sidebarController;
     @FXML
@@ -60,17 +60,14 @@ public class HomeController {
 
         // Configure Table
         // Make table results clickable for scene change
-        resultsTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Car selectedCar = resultsTable.getSelectionModel().getSelectedItem();
-                System.out.printf("Selected vehicle id: %d\n", selectedCar.getId());
-            }
+        resultsTable.setOnMouseClicked(event -> {
+            Car selectedCar = resultsTable.getSelectionModel().getSelectedItem();
+            SceneController.changeScene(SceneController.carDetailFXMLPath, selectedCar, resultsTable);
         });
 
         // Setup CellValueFactories for columns in table
         TableColumn<Car, Long> idColumn = (TableColumn<Car, Long>) resultsTable.getColumns().get(0);
-        idColumn.setCellValueFactory(new PropertyValueFactory<Car, Long>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         TableColumn<Car, String> vehicleColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(1);
         vehicleColumn.setCellValueFactory(data -> {
@@ -79,24 +76,24 @@ public class HomeController {
         });
 
         TableColumn<Car, String> fuelColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(2);
-        fuelColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("fuelType"));
+        fuelColumn.setCellValueFactory(new PropertyValueFactory<>("fuelType"));
 
         TableColumn<Car, Integer> doorsColumn = (TableColumn<Car, Integer>) resultsTable.getColumns().get(3);
-        doorsColumn.setCellValueFactory(new PropertyValueFactory<Car, Integer>("doors"));
+        doorsColumn.setCellValueFactory(new PropertyValueFactory<>("doors"));
 
         TableColumn<Car, String> engineColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(4);
         engineColumn.setCellValueFactory(data -> {
             Car car = data.getValue();
-            return new SimpleStringProperty(String.valueOf(car.getEngineSize()) + "L");
+            return new SimpleStringProperty(car.getEngineSize() + "L");
         });
 
         TableColumn<Car, String> colourColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(5);
-        colourColumn.setCellValueFactory(new PropertyValueFactory<Car, String>("color"));
+        colourColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
 
         TableColumn<Car, String> priceColumn = (TableColumn<Car, String>) resultsTable.getColumns().get(6);
         priceColumn.setCellValueFactory(data -> {
             Car car = data.getValue();
-            return new SimpleStringProperty("£" + String.valueOf(car.calcMonthlyPaymentPrice(48, 9)) + "/mo");
+            return new SimpleStringProperty("£" + car.calcMonthlyPaymentPrice(48, 9) + "/mo");
         });
     }
 
@@ -151,4 +148,7 @@ public class HomeController {
         ObservableList<Car> data = FXCollections.observableArrayList(filteredCars);
         resultsTable.setItems(data);
     }
+
+    @Override
+    public void recieveInformation(Object data) {}
 }

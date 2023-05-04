@@ -10,39 +10,17 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InputValidationTest {
-
-    @ParameterizedTest(name = "{index} isValidEmailAddress({0}) => {1}")
-    @MethodSource("isValidEmailAddressTestCases")
-    void Test_isValidEmailAddress(String sample, boolean expected) {
-        assertEquals(expected, InputValidation.isValidEmailAddress(sample));
+    @ParameterizedTest(name = "{index} onlyContainsLettersOrNumbers({0}) => {1}")
+    @MethodSource("onlyContainsLettersOrNumbersTestCases")
+    void Test_onlyContainsLettersOrNumbers(String sample, boolean expected) {
+        assertEquals(expected, InputValidation.onlyContainsLettersOrNumbers(sample));
     }
 
-    private static Stream<Arguments> isValidEmailAddressTestCases() {
-        return Stream.of(
-                Arguments.of("a@b.com", true),
-                Arguments.of("alpha@bravo.org", true),
-                Arguments.of("", false),
-                Arguments.of("a.com", false),
-                Arguments.of("@b.com", false),
-                Arguments.of("@.blah", false),
-                Arguments.of("abc", false),
-                Arguments.of("this contains spaces @blah.com", false),
-                Arguments.of("thisIsValid&ThisIsToo@blah.org", true),
-                Arguments.of("abc@foo.thisissuperlongandwayoverthetop", false)
-        );
-    }
-
-    @ParameterizedTest(name = "{index} onlyContainsLetters({0}) => {1}")
-    @MethodSource("onlyContainsLettersTestCases")
-    void Test_onlyContainsLetters(String sample, boolean expected) {
-        assertEquals(expected, InputValidation.onlyContainsLetters(sample));
-    }
-
-    private static Stream<Arguments> onlyContainsLettersTestCases() {
+    private static Stream<Arguments> onlyContainsLettersOrNumbersTestCases() {
         return Stream.of(
                 Arguments.of("abc", true),
                 Arguments.of("", false),
-                Arguments.of("ab12c", false),
+                Arguments.of("ab12c", true),
                 Arguments.of("a&c", false)
         );
     }

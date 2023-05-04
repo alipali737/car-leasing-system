@@ -21,5 +21,6 @@
         <!-- Mapping files -->
         <mapping resource="Car.hbm.xml"/>
         <mapping resource="InventoryItem.hbm.xml"/>
+        <mapping resource="User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

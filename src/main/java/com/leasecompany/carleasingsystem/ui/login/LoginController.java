@@ -1,14 +1,23 @@
 package com.leasecompany.carleasingsystem.ui.login;
 
-import com.leasecompany.carleasingsystem.ui.home.HomeApp;
+import com.leasecompany.carleasingsystem.database.data.DAOFactory;
+import com.leasecompany.carleasingsystem.database.data.user.User;
+import com.leasecompany.carleasingsystem.database.data.user.UserDAO;
+import com.leasecompany.carleasingsystem.ui.Controller;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import com.leasecompany.carleasingsystem.utils.validation.CustomValidationDecoration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import net.synedra.validatorfx.Validator;
 
-public class LoginController {
+import java.util.List;
+import java.util.Map;
+
+public class LoginController implements Controller {
     @FXML
     private TextField usernameField;
 
@@ -22,9 +31,10 @@ public class LoginController {
     private Hyperlink registerLink;
 
     private Validator validator;
+    private UserDAO userDAO;
 
-    @FXML
     public void initialize() {
+        userDAO = DAOFactory.getInstance().newUserDAO();
         loginButton.setOnAction(this::handleLoginButtonClick);
         registerLink.setOnAction(this::handleRegisterLink);
 
@@ -64,22 +74,28 @@ public class LoginController {
 
         if (authenticate(username, password)) {
             // authenticated, move to home screen
-            SceneController.changeScene(new HomeApp(), loginButton);
+            SceneController.changeScene(SceneController.homeFXMLPath, loginButton);
         } else {
             // auth rejected, move to failed screen
-            SceneController.changeScene(new LoginFailedApp(), loginButton);
+            SceneController.changeScene(SceneController.loginFailedFXMLPath, loginButton);
         }
     }
 
     private void handleRegisterLink(ActionEvent event) {
-        SceneController.changeScene(new RegisterApp(), registerLink);
+        SceneController.changeScene(SceneController.registerFXMLPath, registerLink);
     }
 
     private boolean authenticate(String username, String password) {
-        // TODO: Query DB for password hash of username
-        // TODO: Get entered password hash
+        List<User> users = userDAO.findByCriteria(Map.of("username", username));
+        User user = users.get(0);
+        if (!user.getApproved()) {
+            return false;
+        }
 
-        // TEMP
-        return (username.equals("admin") && password.equals("admin"));
+        String hashedPassword = userDAO.hashPassword(password);
+        return (hashedPassword.equals(user.getPasswordHash()));
     }
+
+    @Override
+    public void recieveInformation(Object data) {}
 }

@@ -6,16 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class RegisterConfirmationController implements Controller {
+public class RegisterFailedController implements Controller {
     @FXML
-    private Button returnButton;
-
+    private Button returnToRegisterButton;
+    @FXML
     public void initialize() {
-        returnButton.setOnAction(this::handleReturnButtonClick);
+        returnToRegisterButton.setOnAction(this::handleReturnButtonClick);
     }
 
-    private void handleReturnButtonClick(ActionEvent event) {
-        SceneController.changeScene(SceneController.loginFXMLPath, returnButton);
+    private void handleReturnButtonClick(ActionEvent event){
+        SceneController.changeScene(SceneController.registerFXMLPath, returnToRegisterButton);
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.leasecompany.carleasingsystem.database.data.car.CarDAO;
 import com.leasecompany.carleasingsystem.database.data.car.CarDAOImpl;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItemDAO;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItemDAOImpl;
+import com.leasecompany.carleasingsystem.database.data.user.UserDAO;
+import com.leasecompany.carleasingsystem.database.data.user.UserDAOImpl;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -33,4 +35,6 @@ public class DAOFactory {
     }
 
     public InventoryItemDAO newInventoryItemDAO() { return new InventoryItemDAOImpl(sessionFactory); }
+
+    public UserDAO newUserDAO() { return new UserDAOImpl(sessionFactory); }
 }

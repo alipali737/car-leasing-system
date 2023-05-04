@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CarDAOImpl extends GenericDAOImpl<Car, Integer> implements CarDAO {
+public class CarDAOImpl extends GenericDAOImpl<Car, Long> implements CarDAO {
     public CarDAOImpl(SessionFactory sessionFactory) {
         super(Car.class ,sessionFactory);
     }

@@ -1,14 +1,14 @@
 package com.leasecompany.carleasingsystem;
 
 import com.leasecompany.carleasingsystem.database.data.DAOFactory;
-import com.leasecompany.carleasingsystem.ui.login.LoginApp;
+import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         // Initialised the DAOFactory and creates the internal sessionFactory
         DAOFactory.getInstance();
@@ -18,8 +18,7 @@ public class Main extends Application {
         primaryStage.setWidth(1280);
         primaryStage.setHeight(720);
 
-        LoginApp loginApp = new LoginApp();
-        loginApp.start(primaryStage);
+        SceneController.changeScene(SceneController.loginFXMLPath, primaryStage);
 
         primaryStage.show();
     }

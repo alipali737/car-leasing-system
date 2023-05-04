@@ -75,7 +75,7 @@
 
 .submit-button {
     -fx-background-color: -fx-base-submit;
-    -fx-background-radius: 10;
+    -fx-background-radius: 27;
     -fx-text-fill: white;
 }
 
@@ -86,7 +86,7 @@
 
 .action-button {
     -fx-background-color: -fx-base-primary;
-    -fx-background-radius: 10;
+    -fx-background-radius: 27;
     -fx-text-fill: white;
 }
 
@@ -97,7 +97,7 @@
 
 .danger-button {
     -fx-background-color: -fx-base-danger;
-    -fx-background-radius: 10;
+    -fx-background-radius: 27;
     -fx-text-fill: white;
 }
 

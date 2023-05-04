@@ -4,7 +4,7 @@ import com.leasecompany.carleasingsystem.database.data.GenericDAO;
 
 import java.util.List;
 
-public interface CarDAO extends GenericDAO<Car, Integer> {
+public interface CarDAO extends GenericDAO<Car, Long> {
     /**
      * Returns a list of all unique string values for a column in the database
      * @param column the database column to search

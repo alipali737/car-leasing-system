@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:controller="com.leasecompany.carleasingsystem.ui.login.RegisterFailedController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/all.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <Rectangle height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="403.0" BorderPane.alignment="CENTER">
+            <fill>
+                <LinearGradient endX="0.505938242280285" endY="1.0" startX="0.498812351543943">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color green="0.8980392217636108" blue="0.7960784435272217" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.05098039284348488" green="0.843137264251709" blue="0.9882352948188782" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+    </left>
+    <right>
+        <Rectangle height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="403.0" BorderPane.alignment="CENTER">
+            <fill>
+                <LinearGradient endX="0.505938242280285" endY="1.0" startX="0.498812351543943">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color green="0.8980392217636108" blue="0.7960784435272217" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.05098039284348488" green="0.843137264251709" blue="0.9882352948188782" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+    </right>
+    <center>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="474.0" BorderPane.alignment="CENTER">
+            <children>
+                <Rectangle fill="#f8f9fa" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-sides" width="474.0" />
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="381.0" AnchorPane.leftAnchor="46.5" AnchorPane.topAnchor="95.0">
+                    <children>
+                        <Rectangle arcHeight="27.0" arcWidth="27.0" fill="WHITE" height="530.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-all" width="381.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login Failed" textAlignment="CENTER" wrappingWidth="293.0" AnchorPane.leftAnchor="43.67" AnchorPane.topAnchor="32.0">
+                            <font>
+                                <Font name="IBM Plex Sans" size="36.0" />
+                            </font>
+                        </Text>
+                        <Text fill="#dc3545" strokeType="OUTSIDE" strokeWidth="0.0" text="Failed to register new account, please try again" textAlignment="CENTER" wrappingWidth="293.0" AnchorPane.leftAnchor="43.67" AnchorPane.topAnchor="120.0">
+                            <font>
+                                <Font name="IBM Plex Sans" size="32.0" />
+                            </font>
+                        </Text>
+                        <Button fx:id="returnToRegisterButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="293.0" style="-fx-text-fill: white;" styleClass="danger-button" text="Return to Register" textFill="WHITE" AnchorPane.leftAnchor="43.67" AnchorPane.topAnchor="399.0">
+                            <font>
+                                <Font name="IBM Plex Sans" size="28.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
