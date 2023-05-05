@@ -34,19 +34,37 @@ public class DatabaseController implements UIController {
             tables.remove("Users");
         }
         tableComboBox.setItems(tables);
+
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteMenuItem = new MenuItem("Delete Record");
+        deleteMenuItem.setOnAction(this::handleDeleteRecordButton);
+        contextMenu.getItems().add(deleteMenuItem);
+
+        resultsTable.setContextMenu(contextMenu);
+    }
+
+    private void handleDeleteRecordButton(ActionEvent event) {
+        Object selectedItem = resultsTable.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            GenericDAO dao = getTableDAO();
+            dao.delete(selectedItem);
+            resultsTable.getItems().remove(selectedItem);
+        }
     }
 
     private <T extends DataEntity> void handleUpdateButton(ActionEvent event) {
-        GenericDAO dao;
+        GenericDAO dao = getTableDAO();
+        if (dao == null) {
+            System.err.println("Unable to create table DAO");
+            return;
+        }
         List<String> columnNames;
         try {
             switch (tableComboBox.getValue()) {
                 case "Cars" -> {
-                    dao = DAOFactory.getInstance().newCarDAO();
                     columnNames = List.of("brand", "model", "spec", "prodYear", "bodyType", "registration", "engineSize", "doors", "seats", "color", "fuelType", "mileage", "value", "description");
                 }
                 case "Users" -> {
-                    dao = DAOFactory.getInstance().newUserDAO();
                     columnNames = List.of("username", "approved", "admin");
                 }
                 default -> {
@@ -91,6 +109,22 @@ public class DatabaseController implements UIController {
 
         resultsTable.getItems().setAll(filteredResults);
 
+    }
+
+    private GenericDAO getTableDAO() {
+        try {
+            switch (tableComboBox.getValue()) {
+                case "Cars":
+                    return DAOFactory.getInstance().newCarDAO();
+                case "Users":
+                    return DAOFactory.getInstance().newUserDAO();
+                default:
+                    return null;
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to find table name, it may not be set: " + e);
+            return null;
+        }
     }
 
     @Override

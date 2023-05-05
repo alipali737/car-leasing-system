@@ -63,8 +63,6 @@ public interface DataEntity<T extends Serializable> {
                     continue;
                 }
 
-                System.out.println("Column with fieldName: " + fieldName + ", and field type: " + field.getType().getTypeName() + ", was found as correct");
-
                 column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
 
                 Text headerText = new Text(fieldName);
