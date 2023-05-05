@@ -5,7 +5,7 @@ import com.leasecompany.carleasingsystem.database.data.car.Car;
 import com.leasecompany.carleasingsystem.database.data.car.CarDAO;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItem;
 import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItemDAO;
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.ui.shared.SidebarController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class HomeController implements Controller {
+public class HomeController implements UIController {
     @FXML
     private SidebarController sidebarController;
     @FXML

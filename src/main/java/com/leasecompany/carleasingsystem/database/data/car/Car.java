@@ -1,6 +1,8 @@
 package com.leasecompany.carleasingsystem.database.data.car;
 
-public class Car {
+import com.leasecompany.carleasingsystem.database.data.DataEntity;
+
+public class Car implements DataEntity {
     private Long id;
     private int doors;
     private double engineSize;
@@ -151,6 +153,19 @@ public class Car {
 
     public double calcMonthlyPaymentPrice(int contractMonths, int depositMonths) {
         return calcMonthlyPaymentPrice(standardDepreciationRate, standardProfitPercentage, contractMonths, depositMonths);
+    }
+
+    @Override
+    public String toString() {
+        return this.id + " " +
+                this.brand + " " +
+                this.model + " " +
+                this.spec + " " +
+                this.prodYear + " " +
+                this.bodyType + " " +
+                this.color + " " +
+                this.fuelType + " " +
+                this.registration;
     }
 
 }

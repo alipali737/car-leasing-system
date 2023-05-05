@@ -41,4 +41,13 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         }
         return hexString.toString();
     }
+
+    @Override
+    public User findByUsername(String username) {
+        List<User> users = super.findByCriteria(Map.of("username", username));
+        if (users.size() > 0) {
+            return users.get(0);
+        }
+        return null;
+    }
 }

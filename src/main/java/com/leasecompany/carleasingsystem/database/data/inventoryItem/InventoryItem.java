@@ -1,10 +1,11 @@
 package com.leasecompany.carleasingsystem.database.data.inventoryItem;
 
+import com.leasecompany.carleasingsystem.database.data.DataEntity;
 import com.leasecompany.carleasingsystem.database.data.car.Car;
 
 import java.util.Date;
 
-public class InventoryItem {
+public class InventoryItem implements DataEntity {
     private Long id;
 
     private Car vehicle;

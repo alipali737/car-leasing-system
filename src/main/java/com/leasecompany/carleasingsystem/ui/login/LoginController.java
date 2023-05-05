@@ -3,7 +3,7 @@ package com.leasecompany.carleasingsystem.ui.login;
 import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.database.data.user.User;
 import com.leasecompany.carleasingsystem.database.data.user.UserDAO;
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import com.leasecompany.carleasingsystem.utils.validation.CustomValidationDecoration;
 import javafx.event.ActionEvent;
@@ -14,10 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import net.synedra.validatorfx.Validator;
 
-import java.util.List;
-import java.util.Map;
-
-public class LoginController implements Controller {
+public class LoginController implements UIController {
     @FXML
     private TextField usernameField;
 
@@ -74,6 +71,7 @@ public class LoginController implements Controller {
 
         if (authenticate(username, password)) {
             // authenticated, move to home screen
+            DAOFactory.setLoggedInUser(userDAO.findByUsername(username));
             SceneController.changeScene(SceneController.homeFXMLPath, loginButton);
         } else {
             // auth rejected, move to failed screen
@@ -86,8 +84,7 @@ public class LoginController implements Controller {
     }
 
     private boolean authenticate(String username, String password) {
-        List<User> users = userDAO.findByCriteria(Map.of("username", username));
-        User user = users.get(0);
+        User user = userDAO.findByUsername(username);
         if (!user.getApproved()) {
             return false;
         }

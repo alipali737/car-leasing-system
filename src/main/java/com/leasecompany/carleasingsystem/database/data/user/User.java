@@ -1,6 +1,8 @@
 package com.leasecompany.carleasingsystem.database.data.user;
 
-public class User {
+import com.leasecompany.carleasingsystem.database.data.DataEntity;
+
+public class User implements DataEntity {
     private Long id;
     private String username;
     private String passwordHash;
@@ -54,6 +56,11 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         this.admin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return this.id + " " + this.username;
     }
 
 }

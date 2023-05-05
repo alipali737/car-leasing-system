@@ -29,6 +29,11 @@ module com.leasecompany.carleasingsystem {
     opens com.leasecompany.carleasingsystem.ui.shared to javafx.fxml;
     exports com.leasecompany.carleasingsystem.ui.home;
     opens com.leasecompany.carleasingsystem.ui.home to javafx.fxml;
+    exports com.leasecompany.carleasingsystem.ui.creation;
+    opens com.leasecompany.carleasingsystem.ui.creation to javafx.fxml;
+    exports com.leasecompany.carleasingsystem.ui.database;
+    opens com.leasecompany.carleasingsystem.ui.database to javafx.fxml;
+
 
     exports com.leasecompany.carleasingsystem.database.data.car;
     opens com.leasecompany.carleasingsystem.database.data.car to org.hibernate.orm.core;

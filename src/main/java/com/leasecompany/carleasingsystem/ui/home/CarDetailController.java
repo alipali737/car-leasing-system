@@ -1,7 +1,7 @@
 package com.leasecompany.carleasingsystem.ui.home;
 
 import com.leasecompany.carleasingsystem.database.data.car.Car;
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
-public class CarDetailController implements Controller {
+public class CarDetailController implements UIController {
     @FXML
     private Text vehicleTitle;
     @FXML

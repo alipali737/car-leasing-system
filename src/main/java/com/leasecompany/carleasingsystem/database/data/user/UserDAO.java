@@ -16,4 +16,11 @@ public interface UserDAO extends GenericDAO<User, Long> {
      * @return Hex digest of the hashed password
      */
     String hashPassword(String password);
+
+    /**
+     * Get a user by their username
+     * @param username
+     * @return new User object or null
+     */
+    User findByUsername(String username);
 }

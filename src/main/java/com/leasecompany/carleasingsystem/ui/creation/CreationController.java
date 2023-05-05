@@ -1,11 +1,11 @@
 package com.leasecompany.carleasingsystem.ui.creation;
 
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class CreationController implements Controller {
+public class CreationController implements UIController {
     @FXML
     private Button createCustomerButton;
     @FXML

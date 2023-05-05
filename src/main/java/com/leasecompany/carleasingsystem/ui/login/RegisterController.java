@@ -3,7 +3,7 @@ package com.leasecompany.carleasingsystem.ui.login;
 import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.database.data.user.User;
 import com.leasecompany.carleasingsystem.database.data.user.UserDAO;
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import com.leasecompany.carleasingsystem.utils.validation.CustomValidationDecoration;
 import com.leasecompany.carleasingsystem.utils.validation.InputValidation;
@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import net.synedra.validatorfx.Validator;
 
-public class RegisterController implements Controller {
+public class RegisterController implements UIController {
     @FXML
     private TextField usernameField;
     @FXML

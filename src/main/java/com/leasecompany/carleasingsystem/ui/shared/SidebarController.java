@@ -1,12 +1,12 @@
 package com.leasecompany.carleasingsystem.ui.shared;
 
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class SidebarController implements Controller {
+public class SidebarController implements UIController {
     @FXML
     private Button homeButton;
     @FXML
@@ -32,7 +32,7 @@ public class SidebarController implements Controller {
     }
 
     private void handleDatabaseButton(ActionEvent event) {
-        System.out.println("Database Button Clicked");
+        SceneController.changeScene(SceneController.databaseFXMLPath, databaseButton);
     }
 
     private void handleExitButton(ActionEvent event) {

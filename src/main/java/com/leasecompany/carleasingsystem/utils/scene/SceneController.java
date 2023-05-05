@@ -1,6 +1,6 @@
 package com.leasecompany.carleasingsystem.utils.scene;
 
-import com.leasecompany.carleasingsystem.ui.Controller;
+import com.leasecompany.carleasingsystem.ui.UIController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -18,6 +18,7 @@ public class SceneController {
     public static final String registerConfirmationFXMLPath = "/com/leasecompany/carleasingsystem/fxml/login/registerConfirmationScene.fxml";
     public static final String registerFailedFXMLPath = "/com/leasecompany/carleasingsystem/fxml/login/registerFailedScene.fxml";
     public static final String creationFXMLPath = "/com/leasecompany/carleasingsystem/fxml/creation/creationScene.fxml";
+    public static final String databaseFXMLPath = "/com/leasecompany/carleasingsystem/fxml/database/databaseScene.fxml";
 
     public static void changeScene(String fxmlPath, Stage primaryStage) {
         try {
@@ -41,7 +42,7 @@ public class SceneController {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource(fxmlPath));
             Parent root = loader.load();
 
-            Controller controller = loader.getController();
+            UIController controller = loader.getController();
             controller.recieveInformation(data);
 
             Scene scene = new Scene(root);
