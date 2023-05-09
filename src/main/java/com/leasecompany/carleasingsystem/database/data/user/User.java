@@ -62,5 +62,4 @@ public class User implements DataEntity {
     public String toString() {
         return this.id + " " + this.username;
     }
-
 }

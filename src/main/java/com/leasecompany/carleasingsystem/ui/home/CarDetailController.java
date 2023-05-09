@@ -10,15 +10,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 public class CarDetailController implements UIController {
     @FXML
     private Text vehicleTitle;
     @FXML
     private Circle vehicleColor;
+    @FXML
+    private ImageView vehicleImage;
     @FXML
     private Text vehicleDescription;
     @FXML
@@ -86,6 +93,8 @@ public class CarDetailController implements UIController {
         createButton.setOnAction(this::handleCreateButton);
         backButton.setOnAction(this::handleBackButton);
 
+        vehicleImage.setPreserveRatio(true);
+
     }
 
     private void updateSceneData() {
@@ -94,6 +103,15 @@ public class CarDetailController implements UIController {
         vehicleColor.setFill(Color.valueOf(vehicle.getColor()));
         vehicleDescription.setText(vehicle.getDescription());
         vehicleReg.setText(vehicle.getRegistration());
+
+        if (vehicle.getImage() != null) {
+            InputStream inputStream = new ByteArrayInputStream(vehicle.getImage());
+            Image image = new Image(inputStream);
+            vehicleImage.setImage(image);
+        } else {
+            Image image = new Image("/src/main/resources/com/leasecompany/carleasingsystem/images/vehicles/no-image.png");
+            vehicleImage.setImage(image);
+        }
 
         ObservableList<Car> data = FXCollections.observableArrayList(vehicle);
         vehicleInfoTable.setItems(data);

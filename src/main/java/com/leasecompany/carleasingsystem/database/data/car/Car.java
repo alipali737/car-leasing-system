@@ -17,7 +17,30 @@ public class Car implements DataEntity {
     private String description;
     private String registration;
     private int mileage;
-    private int value;
+    private double value;
+    private byte[] imageData;
+
+    public Car() {}
+
+    public Car(int doors, double engineSize, String color, String fuelType, int seats, String bodyType, String brand,
+               String model, String spec, int prodYear, String description, String registration,
+               int mileage, double value, byte[] imageData) {
+        this.doors = doors;
+        this.engineSize = engineSize;
+        this.color = color;
+        this.fuelType = fuelType;
+        this.seats = seats;
+        this.bodyType = bodyType;
+        this.brand = brand;
+        this.model = model;
+        this.spec = spec;
+        this.prodYear = prodYear;
+        this.description = description;
+        this.registration = registration;
+        this.mileage = mileage;
+        this.value = value;
+        this.imageData = imageData;
+    }
 
     public Long getId() {
         return id;
@@ -131,12 +154,20 @@ public class Car implements DataEntity {
         this.mileage = mileage;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
+    }
+
+    public byte[] getImage() {
+        return imageData;
+    }
+
+    public void setImage(byte[] imageData) {
+        this.imageData = imageData;
     }
 
     public static final double standardDepreciationRate = 0.01; // 1% depreciation per month
@@ -167,5 +198,4 @@ public class Car implements DataEntity {
                 this.fuelType + " " +
                 this.registration;
     }
-
 }

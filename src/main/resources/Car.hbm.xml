@@ -21,6 +21,7 @@
         <property name="description" column="description" type="string" />
         <property name="registration" column="registration" type="string" />
         <property name="mileage" column="mileage" type="int" />
-        <property name="value" column="value" type="int" />
+        <property name="value" column="value" type="double" />
+        <property name="image" column="image" type="binary" />
     </class>
 </hibernate-mapping>

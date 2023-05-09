@@ -1,6 +1,8 @@
 package com.leasecompany.carleasingsystem.ui.creation;
 
+import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.ui.UIController;
+import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,15 +15,22 @@ public class CreationController implements UIController {
 
     public void initialize() {
         createCustomerButton.setOnAction(this::handleCreateCustomer);
-        createVehicleButton.setOnAction(this::handleCreateVehicle);
+
+        if (!DAOFactory.getLoggedInUser().getAdmin()) {
+            // Non-admin users shouldn't be able to add a vehicle
+            createVehicleButton.setVisible(false);
+        } else {
+            createVehicleButton.setOnAction(this::handleCreateVehicle);
+        }
+
     }
 
     private void handleCreateCustomer(ActionEvent event) {
-        System.out.println("Create Customer Button Pressed");
+
     }
 
     private void handleCreateVehicle(ActionEvent event) {
-        System.out.println("Create Vehicle Button Pressed");
+        SceneController.changeScene(SceneController.createVehicleFXMLPath, createCustomerButton);
     }
 
     @Override

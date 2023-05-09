@@ -19,6 +19,8 @@ module com.leasecompany.carleasingsystem {
     requires jakarta.xml.bind;
     requires com.fasterxml.classmate;
     requires net.bytebuddy;
+    requires com.dlsc.formsfx;
+    requires org.apache.commons.text;
 
     exports com.leasecompany.carleasingsystem;
     exports com.leasecompany.carleasingsystem.ui.login;

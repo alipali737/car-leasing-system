@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/all.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.leasecompany.carleasingsystem.ui.creation.CreateVehicleController">
+    <center>
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1189.0">
+            <left>
+                <Rectangle height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="403.0" BorderPane.alignment="CENTER">
+                    <fill>
+                        <LinearGradient endX="0.505938242280285" endY="1.0" startX="0.498812351543943">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color green="0.8980392217636108" blue="0.7960784435272217" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.05098039284348488" green="0.843137264251709" blue="0.9882352948188782" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </fill>
+                </Rectangle>
+            </left>
+            <right>
+                <Rectangle height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="403.0" BorderPane.alignment="CENTER">
+                    <fill>
+                        <LinearGradient endX="0.505938242280285" endY="1.0" startX="0.498812351543943">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color green="0.8980392217636108" blue="0.7960784435272217" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.05098039284348488" green="0.843137264251709" blue="0.9882352948188782" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </fill>
+                </Rectangle>
+            </right>
+            <center>
+            </center>
+            <center>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="474.0" BorderPane.alignment="CENTER">
+                    <Rectangle fill="#f8f9fa" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-sides" width="474.0" />
+                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="454.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <Rectangle arcHeight="27.0" arcWidth="27.0" fill="WHITE" height="700.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-all" width="454.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Text layoutX="105.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Vehicle" textAlignment="CENTER" wrappingWidth="256.0" AnchorPane.topAnchor="10.0">
+                            <font>
+                                <Font name="IBM Plex Sans" size="36.0" />
+                            </font>
+                        </Text>
+                        <GridPane layoutX="20.0" layoutY="64.0" prefHeight="128.0" prefWidth="418.0">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="203.353759765625" minWidth="10.0" prefWidth="124.3057861328125" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.6942138671875" minWidth="10.0" prefWidth="293.6942138671875" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Body Type:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="bodyTypeField" promptText="eg. Saloon" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Brand:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="brandField" promptText="eg. Audi" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Model:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="modelField" promptText="eg. A4" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Spec:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="specField" promptText="eg. S line" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Prod Year:" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="prodYearField" promptText="eg. 2023" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Description:" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="descriptionField" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Doors:" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="doorsField" promptText="eg. 4" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Engine Size:" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="engineSizeField" promptText="eg. 1.3" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Color:" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="colorField" promptText="eg. Red" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Fuel Type:" GridPane.rowIndex="10">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                        <TextField fx:id="fuelTypeField" layoutX="134.0" layoutY="300.0" promptText="eg. Petrol" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin>
+                        </TextField>
+
+                                <Label text="Seats:" GridPane.rowIndex="11">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="seatsField" promptText="eg. 5" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Registration:" GridPane.rowIndex="12">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="registrationField" promptText="eg. AA00 0AA" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Mileage:" GridPane.rowIndex="13">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="mileageField" promptText="eg. 10000" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+
+                                <Label text="Value:" GridPane.rowIndex="14">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></Label>
+                                <TextField fx:id="valueField" promptText="eg. 25000" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                           <font>
+                              <Font name="IBM Plex Sans" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="2.0" top="2.0" />
+                           </GridPane.margin></TextField>
+                            </children>
+                        </GridPane>
+                        <Button fx:id="uploadButton" layoutX="14.0" layoutY="628.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="210.0" style="-fx-text-fill: white;" styleClass="action-button" text="Upload Image" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="610.0">
+                            <font>
+                                <Font name="IBM Plex Sans" size="24.0" />
+                            </font>
+                        </Button>
+                  <Button fx:id="submitButton" layoutX="233.0" layoutY="628.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="210.0" style="-fx-text-fill: white;" styleClass="submit-button" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="610.0">
+                     <font>
+                        <Font name="IBM Plex Sans" size="24.0" />
+                     </font>
+                  </Button>
+                    </AnchorPane>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </center>
+   <left>
+       <fx:include source="../shared/sidebar.fxml" fx:id="sidebar"/>
+   </left>
+</BorderPane>
