@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.leasecompany.carleasingsystem.database.data.leaseAgreement.LeaseAgreement" table = "lease_agreements">
+        <id name = "id" column="id" type="long">
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inventoryItem" column="inventory_item_id" lazy="false" unique="true"/>
+        <many-to-one name="customer" column="customer_id" lazy="false" unique="true"/>
+        <property name="policyReference" column="policy_reference" type="java.lang.String" />
+        <property name="policyStartDate" column="policy_start_date" type="date" />
+        <property name="policyEndDate" column="policy_expiry_date" type="date" />
+        <property name="policyTerm" column="policy_term" type="int" />
+        <property name="initialDepositMonths" column="initial_deposit_months" type="int" />
+        <property name="totalPrice" column="total_price" type="double" />
+        <property name="dailyLateFeePercentage" column="daily_late_fee_percentage" type="double" />
+        <property name="annualMileageAllowed" column="annual_mileage_allowed" type="int" />
+    </class>
+</hibernate-mapping>

@@ -2,6 +2,19 @@ package com.leasecompany.carleasingsystem.utils.validation;
 
 public class InputValidation {
 
+    public static final String postcodeRegex = "^([A-Za-z]{1,2}\\d{1,2}[A-Za-z]?\\s?\\d{1}[A-Za-z]{2}|[A-Za-z]{1}" +
+            "\\d{1}[A-Za-z]?\\s?\\d{1}[A-Za-z]{2})$";
+    public static final String phoneNumberRegex = "^\\d{5}\\s\\d{6}|\\d{11}$";
+    public static final String emailRegex = "^[\\w-.]+@[\\w-]+(.[\\w-]+)*$";
+    public static final String driverLicenseNoRegex = "^[A-Z]{5}[0-9]{6}[A-Z]{2}[0-9][A-Z]{2}$";
+    public static final String dobRegex = "^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\\d{4}$";
+
+    /**
+     * Checks if a string matches the given regex
+     * @param sample
+     * @param regex
+     */
+    public static boolean matchesRegex(String sample, String regex) { return sample.matches(regex); }
 
     /**
      * Checks if a string only contains letters or numbers [a-zA-Z0-9], no special characters allowed

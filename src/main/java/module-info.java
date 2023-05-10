@@ -43,4 +43,8 @@ module com.leasecompany.carleasingsystem {
     opens com.leasecompany.carleasingsystem.database.data.inventoryItem to org.hibernate.orm.core;
     exports com.leasecompany.carleasingsystem.database.data.user;
     opens com.leasecompany.carleasingsystem.database.data.user to org.hibernate.orm.core;
+    exports com.leasecompany.carleasingsystem.database.data.customer;
+    opens com.leasecompany.carleasingsystem.database.data.customer to org.hibernate.orm.core;
+    exports com.leasecompany.carleasingsystem.database.data.leaseAgreement;
+    opens com.leasecompany.carleasingsystem.database.data.leaseAgreement to org.hibernate.orm.core;
 }

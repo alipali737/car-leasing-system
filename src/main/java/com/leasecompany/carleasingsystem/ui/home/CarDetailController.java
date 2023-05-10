@@ -108,9 +108,6 @@ public class CarDetailController implements UIController {
             InputStream inputStream = new ByteArrayInputStream(vehicle.getImage());
             Image image = new Image(inputStream);
             vehicleImage.setImage(image);
-        } else {
-            Image image = new Image("/src/main/resources/com/leasecompany/carleasingsystem/images/vehicles/no-image.png");
-            vehicleImage.setImage(image);
         }
 
         ObservableList<Car> data = FXCollections.observableArrayList(vehicle);

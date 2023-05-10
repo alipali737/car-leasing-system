@@ -1,17 +1,16 @@
 package com.leasecompany.carleasingsystem.database.data;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
-import javafx.util.converter.BooleanStringConverter;
-import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.LongStringConverter;
+import javafx.util.converter.*;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public interface DataEntity<T extends Serializable> {
@@ -54,6 +53,10 @@ public interface DataEntity<T extends Serializable> {
                         TableColumn<Object, Long> columnLong = new TableColumn<>(field.getName());
                         columnLong.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
                         column = columnLong;
+                    case "java.util.Date":
+                        TableColumn<Object, Date> columnDate = new TableColumn<>(field.getName());
+                        columnDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+                        column = columnDate;
                     default:
                         break;
                 }
@@ -78,4 +81,11 @@ public interface DataEntity<T extends Serializable> {
         }
         return columns.toArray(new TableColumn[0]);
     }
+
+    /**
+     * Generate a report file for the object
+     * @param path path to write file to
+     */
+    default void generateReportFile(String path, Label statusLabel) {}
+
 }

@@ -1,6 +1,13 @@
 package com.leasecompany.carleasingsystem.database.data.car;
 
+import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.database.data.DataEntity;
+import javafx.scene.control.Label;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Car implements DataEntity {
     private Long id;
@@ -197,5 +204,46 @@ public class Car implements DataEntity {
                 this.color + " " +
                 this.fuelType + " " +
                 this.registration;
+    }
+
+    @Override
+    public void generateReportFile(String path, Label statusLabel) {
+        String[] lines = {
+                "========= Generate Vehicle Report =========",
+                "Date Generated: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")),
+                "Generate by: " + DAOFactory.getLoggedInUser().getUsername(),
+                "-------------------------------------------",
+                "ID: " + this.id,
+                "Brand: " + this.brand,
+                "Model: " + this.model,
+                "Spec: " + this.spec,
+                "Prod Year: " + this.prodYear,
+                "Body Type: " + this.bodyType,
+                "Colour: " + this.color,
+                "Fuel Type:" + this.fuelType,
+                "Doors: " + this.doors,
+                "Seats: " + this.seats,
+                "Engine Size: " + this.engineSize + "L",
+                "Description: " + this.description,
+                "Registration: " + this.registration,
+                "Mileage: " + this.mileage,
+                "Value: £" + this.value
+        };
+
+        try {
+            String fullPath = path + "/GeneratedVehicleReport-" + LocalDateTime.now().format(
+                    DateTimeFormatter.ofPattern("ddMMyyyyHHmmss")) + ".txt";
+
+            FileWriter writer = new FileWriter(fullPath);
+            for (String line : lines) {
+                writer.write(line + "\n");
+            }
+            writer.close();
+            statusLabel.setText("File saved to: "+ fullPath);
+        } catch (IOException e) {
+            statusLabel.setText("Failed to generate report");
+            System.err.println("Failed to generate report");
+            e.printStackTrace();
+        }
     }
 }

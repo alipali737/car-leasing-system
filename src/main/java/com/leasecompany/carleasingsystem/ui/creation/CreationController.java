@@ -26,11 +26,11 @@ public class CreationController implements UIController {
     }
 
     private void handleCreateCustomer(ActionEvent event) {
-
+        SceneController.changeScene(SceneController.createCustomerFXMLPath, createCustomerButton);
     }
 
     private void handleCreateVehicle(ActionEvent event) {
-        SceneController.changeScene(SceneController.createVehicleFXMLPath, createCustomerButton);
+        SceneController.changeScene(SceneController.createVehicleFXMLPath, createVehicleButton);
     }
 
     @Override

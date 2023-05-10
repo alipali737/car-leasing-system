@@ -1,8 +1,11 @@
 package com.leasecompany.carleasingsystem.database.data.car;
 
+import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.database.data.GenericDAOImpl;
+import com.leasecompany.carleasingsystem.database.data.inventoryItem.InventoryItem;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.hibernate.query.criteria.JpaRoot;
@@ -18,6 +21,27 @@ import java.util.stream.Stream;
 public class CarDAOImpl extends GenericDAOImpl<Car, Long> implements CarDAO {
     public CarDAOImpl(SessionFactory sessionFactory) {
         super(Car.class ,sessionFactory);
+    }
+
+    @Override
+    public boolean create(Car entity) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            // Persist the car entity to the database to generate its ID
+            session.persist(entity);
+            transaction.commit();
+
+            // Create an Inventory Item to go with it
+            InventoryItem inventoryItem = new InventoryItem();
+            inventoryItem.setVehicle(entity);
+            DAOFactory.getInstance().newInventoryItemDAO().create(inventoryItem);
+
+            return true;
+        } catch (Exception ex) {
+            System.err.println("failed to create record in database: " + ex);
+            return false;
+        }
     }
 
     @Override

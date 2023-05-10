@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.leasecompany.carleasingsystem.database.data.customer.Customer" table = "customers">
+        <id name = "id" column="id" type="long">
+            <generator class="identity" />
+        </id>
+        <property name="firstname" column="firstname" type="string" />
+        <property name="surname" column="surname" type="string" />
+        <property name="addressLine1" column="address_line_1" type="string" />
+        <property name="addressLine2" column="address_line_2" type="string" />
+        <property name="city" column="city" type="string" />
+        <property name="postcode" column="postcode" type="string" />
+        <property name="phone" column="phone" type="string" />
+        <property name="email" column="email" type="string" />
+        <property name="driverLicenseNumber" column="driver_license_number" type="string" />
+        <property name="dob" column="dob" type="date" />
+    </class>
+</hibernate-mapping>

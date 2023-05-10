@@ -22,5 +22,7 @@
         <mapping resource="Car.hbm.xml"/>
         <mapping resource="InventoryItem.hbm.xml"/>
         <mapping resource="User.hbm.xml"/>
+        <mapping resource="Customer.hbm.xml"/>
+        <mapping resource="LeaseAgreement.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

@@ -8,9 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +28,28 @@ public class DatabaseController implements UIController {
     private Button updateButton;
     @FXML
     private TableView resultsTable;
+    @FXML
+    private Label statusLabel;
+
+    private ContextMenu contextMenu;
 
     public void initialize() {
+        statusLabel.setText("");
+        statusLabel.setAlignment(Pos.CENTER);
+
         updateButton.setOnAction(this::handleUpdateButton);
 
         ObservableList<String> tables = FXCollections.observableList(DAOFactory.getInstance().getTables());
         tables.remove("InventoryItems");
         if (!DAOFactory.getLoggedInUser().getAdmin()) {
-            // If not admin, don't let them edit the Users Table
+            // If not admin, don't let them edit the Users Table or the Cars Table
             tables.remove("Users");
+            tables.remove("Cars");
         }
-        tableComboBox.setItems(tables);
 
-        ContextMenu contextMenu = new ContextMenu();
+        tableComboBox.setItems(tables.sorted());
+
+        contextMenu = new ContextMenu();
         MenuItem deleteMenuItem = new MenuItem("Delete Record");
         deleteMenuItem.setOnAction(this::handleDeleteRecordButton);
         contextMenu.getItems().add(deleteMenuItem);
@@ -62,12 +76,29 @@ public class DatabaseController implements UIController {
         try {
             switch (tableComboBox.getValue()) {
                 case "Cars" -> {
+                    MenuItem createReportMenuItem = new MenuItem("Create Report");
+                    createReportMenuItem.setOnAction(this::handleCreateReportButton);
+                    contextMenu.getItems().add(createReportMenuItem);
                     columnNames = List.of("brand", "model", "spec", "prodYear", "bodyType", "registration", "engineSize", "doors", "seats", "color", "fuelType", "mileage", "value", "description");
                 }
                 case "Users" -> {
                     columnNames = List.of("username", "approved", "admin");
                 }
+                case "Customers" -> {
+                    columnNames = List.of("firstname", "surname", "addressLine1", "addressLine2", "city", "postcode", "phone", "email", "driverLicenseNumber", "dob");
+                }
+                case "LeaseAgreements" -> {
+                    MenuItem createReportMenuItem = new MenuItem("Create Report");
+                    createReportMenuItem.setOnAction(this::handleCreateReportButton);
+                    contextMenu.getItems().add(createReportMenuItem);
+
+                    MenuItem returnVehicleMenuItem = new MenuItem("Return Vehicle");
+                    // TODO: Add return vehicle functionality
+                    contextMenu.getItems().add(returnVehicleMenuItem);
+                    columnNames = List.of("policyReference", "policyStartDate", "policyEndDate", "policyTerm", "initialDepositMonths", "totalPrice", "dailyLateFeePercentage", "annualMileageAllowed");
+                }
                 default -> {
+                    System.err.println("No table columns defined for " + tableComboBox.getValue());
                     return;
                 }
             }
@@ -111,6 +142,25 @@ public class DatabaseController implements UIController {
 
     }
 
+    private void handleCreateReportButton(ActionEvent event) {
+        Object selectedItem = resultsTable.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            return;
+        }
+        Path dirPath = Paths.get("reports");
+
+        try {
+            if (!Files.exists(dirPath)) {
+                Files.createDirectories(dirPath);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        DataEntity<?> entity = (DataEntity<?>) selectedItem;
+        entity.generateReportFile(dirPath.toString(), statusLabel);
+    }
+
     private GenericDAO getTableDAO() {
         try {
             switch (tableComboBox.getValue()) {
@@ -118,6 +168,10 @@ public class DatabaseController implements UIController {
                     return DAOFactory.getInstance().newCarDAO();
                 case "Users":
                     return DAOFactory.getInstance().newUserDAO();
+                case "Customers":
+                    return DAOFactory.getInstance().newCustomerDAO();
+                case "LeaseAgreements":
+                    return DAOFactory.getInstance().newLeaseAgreementDAO();
                 default:
                     return null;
             }

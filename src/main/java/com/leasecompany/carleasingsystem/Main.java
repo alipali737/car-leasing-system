@@ -13,8 +13,6 @@ public class Main extends Application {
         // Initialised the DAOFactory and creates the internal sessionFactory
         DAOFactory.getInstance();
 
-//        tempLoadImages();
-
         primaryStage.setResizable(false);
         primaryStage.setTitle("Car Leasing System");
         primaryStage.setWidth(1280);
@@ -28,33 +26,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-//    private void tempLoadImages() {
-//        CarDAO carDAO = DAOFactory.getInstance().newCarDAO();
-//        List<Car> cars = carDAO.findAll();
-//        for (Car car : cars) {
-//            if (car.getImage() != null) {
-//                continue;
-//            }
-//            String imagePath = "src/main/resources/com/leasecompany/carleasingsystem/images/vehicles/";
-//            imagePath += car.getBrand() + " ";
-//            imagePath += car.getModel();
-//            if (!car.getSpec().isBlank()) {
-//                imagePath += " " + car.getSpec();
-//            }
-//            imagePath += ".jpeg";
-//
-//            System.out.println("Trying to upload image: " + imagePath);
-//            try {
-//                File imageFile = new File(imagePath);
-//                byte[] bytes = carDAO.convertToByteArray(imageFile);
-//                car.setImage(bytes);
-//                carDAO.update(car);
-//            } catch (FileNotFoundException e) {
-//                System.err.println("Failed to upload image: " + e);
-//            }
-//
-//        }
-//    }
 
 }

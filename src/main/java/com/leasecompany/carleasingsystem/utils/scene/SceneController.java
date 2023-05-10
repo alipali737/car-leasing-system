@@ -19,6 +19,7 @@ public class SceneController {
     public static final String registerFailedFXMLPath = "/com/leasecompany/carleasingsystem/fxml/login/registerFailedScene.fxml";
     public static final String creationFXMLPath = "/com/leasecompany/carleasingsystem/fxml/creation/creationScene.fxml";
     public static final String createVehicleFXMLPath = "/com/leasecompany/carleasingsystem/fxml/creation/createVehicleScene.fxml";
+    public static final String createCustomerFXMLPath = "/com/leasecompany/carleasingsystem/fxml/creation/createCustomerScene.fxml";
     public static final String databaseFXMLPath = "/com/leasecompany/carleasingsystem/fxml/database/databaseScene.fxml";
 
     public static void changeScene(String fxmlPath, Stage primaryStage) {
