@@ -120,4 +120,19 @@ public class Customer implements DataEntity {
     public void setDob(Date dob) {
         this.dob = dob;
     }
+
+    @Override
+    public String toString() {
+        return this.id + " " +
+                this.firstname + " " +
+                this.surname + " " +
+                this.addressLine1 + " " +
+                this.addressLine2 + " " +
+                this.city + " " +
+                this.postcode + " " +
+                this.phone + " " +
+                this.email + " " +
+                this.driverLicenseNumber + " " +
+                this.dob;
+    }
 }

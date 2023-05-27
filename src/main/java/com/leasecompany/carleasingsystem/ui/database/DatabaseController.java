@@ -4,6 +4,8 @@ import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.database.data.DataEntity;
 import com.leasecompany.carleasingsystem.database.data.GenericDAO;
 import com.leasecompany.carleasingsystem.ui.UIController;
+import com.leasecompany.carleasingsystem.utils.scene.Alerts;
+import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +42,7 @@ public class DatabaseController implements UIController {
         updateButton.setOnAction(this::handleUpdateButton);
 
         ObservableList<String> tables = FXCollections.observableList(DAOFactory.getInstance().getTables());
+        // No user should be able to edit this table as it's primarily used for backend
         tables.remove("InventoryItems");
         if (!DAOFactory.getLoggedInUser().getAdmin()) {
             // If not admin, don't let them edit the Users Table or the Cars Table
@@ -50,9 +53,6 @@ public class DatabaseController implements UIController {
         tableComboBox.setItems(tables.sorted());
 
         contextMenu = new ContextMenu();
-        MenuItem deleteMenuItem = new MenuItem("Delete Record");
-        deleteMenuItem.setOnAction(this::handleDeleteRecordButton);
-        contextMenu.getItems().add(deleteMenuItem);
 
         resultsTable.setContextMenu(contextMenu);
     }
@@ -74,6 +74,14 @@ public class DatabaseController implements UIController {
         }
         List<String> columnNames;
         try {
+            // Initially Clear Menu
+            contextMenu.getItems().clear();
+
+            // Add Delete function
+            MenuItem deleteMenuItem = new MenuItem("Delete Record");
+            deleteMenuItem.setOnAction(this::handleDeleteRecordButton);
+            contextMenu.getItems().add(deleteMenuItem);
+
             switch (tableComboBox.getValue()) {
                 case "Cars" -> {
                     MenuItem createReportMenuItem = new MenuItem("Create Report");
@@ -81,12 +89,8 @@ public class DatabaseController implements UIController {
                     contextMenu.getItems().add(createReportMenuItem);
                     columnNames = List.of("brand", "model", "spec", "prodYear", "bodyType", "registration", "engineSize", "doors", "seats", "color", "fuelType", "mileage", "value", "description");
                 }
-                case "Users" -> {
-                    columnNames = List.of("username", "approved", "admin");
-                }
-                case "Customers" -> {
-                    columnNames = List.of("firstname", "surname", "addressLine1", "addressLine2", "city", "postcode", "phone", "email", "driverLicenseNumber", "dob");
-                }
+                case "Users" -> columnNames = List.of("username", "approved", "admin");
+                case "Customers" -> columnNames = List.of("firstname", "surname", "addressLine1", "addressLine2", "city", "postcode", "phone", "email", "driverLicenseNumber", "dob");
                 case "LeaseAgreements" -> {
                     MenuItem createReportMenuItem = new MenuItem("Create Report");
                     createReportMenuItem.setOnAction(this::handleCreateReportButton);
@@ -94,6 +98,7 @@ public class DatabaseController implements UIController {
 
                     MenuItem returnVehicleMenuItem = new MenuItem("Return Vehicle");
                     // TODO: Add return vehicle functionality
+                    returnVehicleMenuItem.setOnAction(this::handleReturnVehicleMenuItem);
                     contextMenu.getItems().add(returnVehicleMenuItem);
                     columnNames = List.of("policyReference", "policyStartDate", "policyEndDate", "policyTerm", "initialDepositMonths", "totalPrice", "dailyLateFeePercentage", "annualMileageAllowed");
                 }
@@ -108,6 +113,12 @@ public class DatabaseController implements UIController {
         }
 
         List<T> results = (List<T>) dao.findAll();
+        if (results.size() == 0) {
+            Alerts alerts = new Alerts();
+            alerts.createErrorAlert("Empty Results", "No results found", "No results were found for the given criteria");
+            return;
+        }
+
         List<T> filteredResults = new ArrayList<>();
         results.forEach(e -> {
             if (e.toString().toLowerCase().contains(searchBar.getText().toLowerCase())) {
@@ -161,20 +172,23 @@ public class DatabaseController implements UIController {
         entity.generateReportFile(dirPath.toString(), statusLabel);
     }
 
+    private void handleReturnVehicleMenuItem(ActionEvent event) {
+        Object selectedItem = resultsTable.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            return;
+        }
+        SceneController.changeScene(SceneController.returnLeaseFXMLPath, selectedItem, resultsTable);
+    }
+
     private GenericDAO getTableDAO() {
         try {
-            switch (tableComboBox.getValue()) {
-                case "Cars":
-                    return DAOFactory.getInstance().newCarDAO();
-                case "Users":
-                    return DAOFactory.getInstance().newUserDAO();
-                case "Customers":
-                    return DAOFactory.getInstance().newCustomerDAO();
-                case "LeaseAgreements":
-                    return DAOFactory.getInstance().newLeaseAgreementDAO();
-                default:
-                    return null;
-            }
+            return switch (tableComboBox.getValue()) {
+                case "Cars" -> DAOFactory.getInstance().newCarDAO();
+                case "Users" -> DAOFactory.getInstance().newUserDAO();
+                case "Customers" -> DAOFactory.getInstance().newCustomerDAO();
+                case "LeaseAgreements" -> DAOFactory.getInstance().newLeaseAgreementDAO();
+                default -> null;
+            };
         } catch (Exception e) {
             System.out.println("Unable to find table name, it may not be set: " + e);
             return null;

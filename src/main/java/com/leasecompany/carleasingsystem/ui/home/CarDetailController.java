@@ -2,6 +2,7 @@ package com.leasecompany.carleasingsystem.ui.home;
 
 import com.leasecompany.carleasingsystem.database.data.car.Car;
 import com.leasecompany.carleasingsystem.ui.UIController;
+import com.leasecompany.carleasingsystem.ui.creation.CreateLeaseData;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -127,7 +128,15 @@ public class CarDetailController implements UIController {
     }
 
     private void handleCreateButton(ActionEvent event) {
-        System.out.println("Create Button Clicked");
+        ToggleButton leaseTermSelectedToggle = (ToggleButton) leaseTermToggles.getSelectedToggle();
+        ToggleButton initialDepositSelectedToggle = (ToggleButton) initialDepositToggles.getSelectedToggle();
+
+        CreateLeaseData createLeaseData = new CreateLeaseData(
+                vehicle,
+                Integer.parseInt(initialDepositSelectedToggle.getText()),
+                Integer.parseInt(leaseTermSelectedToggle.getText())
+        );
+        SceneController.changeScene(SceneController.createLeaseFXMLPath, createLeaseData, createButton);
     }
 
     private void handleBackButton(ActionEvent event) {

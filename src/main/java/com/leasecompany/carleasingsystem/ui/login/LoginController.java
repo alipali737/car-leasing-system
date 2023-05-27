@@ -85,6 +85,9 @@ public class LoginController implements UIController {
 
     private boolean authenticate(String username, String password) {
         User user = userDAO.findByUsername(username);
+        if (user == null) {
+            return false;
+        }
         if (!user.getApproved()) {
             return false;
         }

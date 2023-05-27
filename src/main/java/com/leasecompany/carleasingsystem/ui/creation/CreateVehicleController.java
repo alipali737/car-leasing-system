@@ -5,7 +5,6 @@ import com.leasecompany.carleasingsystem.database.data.car.Car;
 import com.leasecompany.carleasingsystem.database.data.car.CarDAO;
 import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
-import com.leasecompany.carleasingsystem.utils.validation.CustomValidationDecoration;
 import com.leasecompany.carleasingsystem.utils.validation.InputValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,102 +50,42 @@ public class CreateVehicleController implements UIController {
         // Create validator checks
         validator = new Validator();
 
-        createLengthCheck("bodyType", bodyTypeField, 3, 15);
-        createLengthCheck("brand", brandField, 3, 25);
-        createLengthCheck("model", modelField, 3, 25);
-        createLengthCheck("spec", specField, 0, 25);
-        createLengthCheck("prodYear", prodYearField, 4, 4);
-        createLengthCheck("description", descriptionField, 0, 300);
-        createLengthCheck("doors", doorsField, 1, 1);
-        createLengthCheck("engineSize", engineSizeField, 1, 4);
-        createLengthCheck("color", colorField, 3, 25);
-        createLengthCheck("fuel", fuelTypeField, 3, 15);
-        createLengthCheck("seats", seatsField, 1, 1);
-        createLengthCheck("registration", registrationField, 8, 8);
+        InputValidation.createLengthCheck(validator, "bodyType", bodyTypeField, 3, 15);
+        InputValidation.createLengthCheck(validator, "brand", brandField, 3, 25);
+        InputValidation.createLengthCheck(validator, "model", modelField, 3, 25);
+        InputValidation.createLengthCheck(validator, "spec", specField, 0, 25);
+        InputValidation.createLengthCheck(validator, "prodYear", prodYearField, 4, 4);
+        InputValidation.createLengthCheck(validator, "description", descriptionField, 0, 300);
+        InputValidation.createLengthCheck(validator, "doors", doorsField, 1, 1);
+        InputValidation.createLengthCheck(validator, "engineSize", engineSizeField, 1, 4);
+        InputValidation.createLengthCheck(validator, "color", colorField, 3, 25);
+        InputValidation.createLengthCheck(validator, "fuel", fuelTypeField, 3, 15);
+        InputValidation.createLengthCheck(validator, "seats", seatsField, 1, 1);
+        InputValidation.createLengthCheck(validator, "registration", registrationField, 8, 8);
 
-        createOnlyLettersCheck("bodyType", bodyTypeField);
-        createOnlyLettersCheck("brand", brandField);
-        createOnlyLettersCheck("color", colorField);
-        createOnlyLettersCheck("fuelType", fuelTypeField);
+        InputValidation.createOnlyLettersCheck(validator, "bodyType", bodyTypeField, false);
+        InputValidation.createOnlyLettersCheck(validator, "brand", brandField, true);
+        InputValidation.createOnlyLettersCheck(validator, "color", colorField, true);
+        InputValidation.createOnlyLettersCheck(validator, "fuelType", fuelTypeField, false);
 
-        createNumericCheck("prodYear", prodYearField, false);
-        createNumericCheck("doors", doorsField, false);
-        createNumericCheck("engineSize", engineSizeField, true);
-        createNumericCheck("seats", seatsField, false);
-        createNumericCheck("mileage", mileageField, true);
-        createNumericCheck("value", valueField, true);
+        InputValidation.createNumericCheck(validator, "prodYear", prodYearField, false);
+        InputValidation.createNumericCheck(validator, "doors", doorsField, false);
+        InputValidation.createNumericCheck(validator, "engineSize", engineSizeField, true);
+        InputValidation.createNumericCheck(validator, "seats", seatsField, false);
+        InputValidation.createNumericCheck(validator, "mileage", mileageField, true);
+        InputValidation.createNumericCheck(validator, "value", valueField, true);
 
-        createNumericRangeCheck("prodYear", prodYearField, 1950, Year.now().getValue());
-        createNumericRangeCheck("doors", doorsField, 1, 9);
-        createNumericRangeCheck("engineSize", engineSizeField, 0, 10);
-        createNumericRangeCheck("seats", seatsField, 1, 9);
-        createNumericRangeCheck("mileage", mileageField, 0, 999_999);
-        createNumericRangeCheck("value", valueField, 0,9_999_999);
+        InputValidation.createNumericRangeCheck(validator, "prodYear", prodYearField, 1950, Year.now().getValue());
+        InputValidation.createNumericRangeCheck(validator, "doors", doorsField, 1, 9);
+        InputValidation.createNumericRangeCheck(validator, "engineSize", engineSizeField, 0, 10);
+        InputValidation.createNumericRangeCheck(validator, "seats", seatsField, 1, 9);
+        InputValidation.createNumericRangeCheck(validator, "mileage", mileageField, 0, 999_999);
+        InputValidation.createNumericRangeCheck(validator, "value", valueField, 0,9_999_999);
 
-        // Check UK Reg regex
-        validator.createCheck()
-                .dependsOn("registration", registrationField.textProperty())
-                .withMethod(c -> {
-                    String var = c.get("registration");
-                    if (!InputValidation.isUkRegistration(var)) {
-                        c.error("Registration doesn't fit UK Standard: AA00 AAA or AA00 000.");
-                    }
-                })
-                .decorates(registrationField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
+        InputValidation.createRegexCheck(validator, "registration", registrationField,
+                InputValidation.ukRegistrationRegex,
+                "Registration doesn't fit UK Standard: AA00 AAA or AA00 000.");
 
-    }
-
-    private void createLengthCheck(String key, TextField textField, int min, int max) {
-        validator.createCheck()
-                .dependsOn(key, textField.textProperty())
-                .withMethod(c -> {
-                    String var = c.get(key);
-                    if (!InputValidation.lengthInRange(var, min, max)) {
-                        c.error("Please keep your name between " + min + " and " + max + " characters.");
-                    }
-                })
-                .decorates(textField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
-    }
-
-    private void createOnlyLettersCheck(String key, TextField textField) {
-        validator.createCheck()
-                .dependsOn(key, textField.textProperty())
-                .withMethod(c -> {
-                    String var = c.get(key);
-                    if (!InputValidation.onlyContainsLetters(var)) {
-                        c.error("Please only enter letters, no special characters or numbers allowed.");
-                    }
-                })
-                .decorates(textField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
-    }
-
-    private void createNumericCheck(String key, TextField textField, boolean doubleAllowed) {
-        validator.createCheck()
-                .dependsOn(key, textField.textProperty())
-                .withMethod(c -> {
-                    String var = c.get(key);
-                    if (!InputValidation.isNumeric(var, doubleAllowed)) {
-                        c.error("Please only enter a number.");
-                    }
-                })
-                .decorates(textField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
-    }
-
-    private void createNumericRangeCheck(String key, TextField textField, double min, double max) {
-        validator.createCheck()
-                .dependsOn(key, textField.textProperty())
-                .withMethod(c -> {
-                    String var = c.get(key);
-                    if (!InputValidation.numericRange(var, min, max)) {
-                        c.error("Please keep the value between " + min + " and " + max + ".");
-                    }
-                })
-                .decorates(textField)
-                .decoratingWith(msg -> new CustomValidationDecoration(msg.getText()));
     }
 
     private void handleImageUploadButton(ActionEvent event) {

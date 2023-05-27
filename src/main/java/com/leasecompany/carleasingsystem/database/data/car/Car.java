@@ -180,7 +180,25 @@ public class Car implements DataEntity {
     public static final double standardDepreciationRate = 0.01; // 1% depreciation per month
     public static final double standardProfitPercentage = 0.1;  // 10% desired profit
 
+    /**
+     * Calculates the monthly payment price for the vehicle, rounded up to maximise company profit
+     * @param depreciationRate rate the car depreciates per month (0-1)
+     * @param profitPercentage desired profit percentage of vehicle value (0-1)
+     * @param contractMonths length of contract in number of months
+     * @param depositMonths number of months worth deposit put down
+     * @return monthly payment price
+     */
     public double calcMonthlyPaymentPrice(double depreciationRate, double profitPercentage, int contractMonths, int depositMonths) {
+        // Check if any of the variables are less than 0, if so reset them to 0
+        depreciationRate = depreciationRate < 0 ? 0 : depreciationRate;
+        profitPercentage = profitPercentage < 0 ? 0 : profitPercentage;
+        depositMonths = depositMonths < 0 ? 0 : depositMonths;
+
+        // If the value or the contract months is 0 or negative, then something is wrong, return 0
+        if (contractMonths <= 0 || value <= 0) {
+            return 0;
+        }
+
         double totalDepreciation = value * (depreciationRate * contractMonths);
         double profitAmount = value * profitPercentage;
         double totalDue = totalDepreciation + profitAmount;

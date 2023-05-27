@@ -1,5 +1,6 @@
 package com.leasecompany.carleasingsystem.ui.shared;
 
+import com.leasecompany.carleasingsystem.database.data.DAOFactory;
 import com.leasecompany.carleasingsystem.ui.UIController;
 import com.leasecompany.carleasingsystem.utils.scene.SceneController;
 import javafx.event.ActionEvent;
@@ -36,6 +37,7 @@ public class SidebarController implements UIController {
     }
 
     private void handleExitButton(ActionEvent event) {
+        DAOFactory.setLoggedInUser(null);
         SceneController.changeScene(SceneController.loginFXMLPath, exitButton);
     }
 

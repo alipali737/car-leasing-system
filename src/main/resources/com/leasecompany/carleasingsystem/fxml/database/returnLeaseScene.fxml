@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/override.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.leasecompany.carleasingsystem.ui.database.ReturnLeaseController">
+    <left>
+        <fx:include source="../shared/sidebar.fxml" fx:id="sidebar"/>
+    </left>
+   <center>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1189.0" BorderPane.alignment="CENTER">
+              <Rectangle fill="#f8f9fa" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-sides" width="1189.0" />
+         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1189.0">
+            <children>
+                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="530.0">
+                        <Rectangle arcHeight="27.0" arcWidth="27.0" fill="WHITE" height="700.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-all" width="530.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Text layoutX="15.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lease Details" textAlignment="CENTER" wrappingWidth="500.0" AnchorPane.topAnchor="14.0">
+                            <font>
+                                <Font name="IBM Plex Sans" size="36.0" />
+                            </font>
+                        </Text>
+                        <GridPane layoutX="10.0" layoutY="90.0" prefHeight="128.0" prefWidth="510.0">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="203.353759765625" minWidth="10.0" prefWidth="124.3057861328125" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.6942138671875" minWidth="10.0" prefWidth="293.6942138671875" />
+                            </columnConstraints>
+                            <rowConstraints>
+                        <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                        <Label text="Policy Reference:">
+                           <font>
+                              <Font name="IBM Plex Sans" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="policyReferenceField" editable="false" styleClass="text-entry" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="IBM Plex Sans" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                                <Label text="Vehicle:" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="vehicleField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+      
+                                <Label text="Customer:" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                        <TextField fx:id="customerField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="IBM Plex Sans" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+      
+                                <Label text="Policy Start Date:" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="policyStartField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+      
+                                <Label text="Policy End Date:" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="policyEndField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+      
+                                <Label text="Extra Late Fee Percentage:" GridPane.rowIndex="7">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="lateFeePercField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+                                <Label text="Allowed Mileage:" GridPane.rowIndex="8">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="allowedMileageField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+      
+                                <Label text="Total Price:" GridPane.rowIndex="9">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="totalPriceField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+      
+                                <Label text="Approx Daily Payment:" GridPane.rowIndex="10">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="dailyPaymentField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+      
+                                <Label text="Monthly Payment Amount:" GridPane.rowIndex="11">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <TextField fx:id="monthlyPaymentField" editable="false" layoutX="134.0" layoutY="300.0" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                                    <font>
+                                        <Font name="IBM Plex Sans" size="16.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+                            </children>
+                        </GridPane>
+                  <HBox.margin>
+                     <Insets left="10.0" top="10.0" />
+                  </HBox.margin>
+                    </AnchorPane>
+               <AnchorPane layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="629.0">
+                  <children>
+                     <Rectangle arcHeight="27.0" arcWidth="27.0" fill="WHITE" height="700.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="drop-shadow-all" width="629.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     <Text layoutX="65.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terminate Lease" textAlignment="CENTER" wrappingWidth="500.0" AnchorPane.topAnchor="14.0">
+                        <font>
+                           <Font name="IBM Plex Sans" size="36.0" />
+                        </font>
+                     </Text>
+                     <GridPane layoutX="60.0" layoutY="90.0" prefHeight="128.0" prefWidth="510.0">
+                        <columnConstraints>
+                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="203.353759765625" minWidth="10.0" prefWidth="124.3057861328125" />
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.6942138671875" minWidth="10.0" prefWidth="293.6942138671875" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Date Returned:">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="dateReturnedField" promptText="eg. DD/MM/YYYY" styleClass="text-entry" GridPane.columnIndex="1">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <Label text="Current Vehicle Mileage:" GridPane.rowIndex="1">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="returnedMileageField" promptText="eg. 30000" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <Label text="Additional Fees:" GridPane.rowIndex="2">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="additionalFeesField" promptText="eg. 375" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <Label text="Return Status:" GridPane.rowIndex="3">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="returnStatusField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <Label text="Initial Price:" GridPane.rowIndex="4">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                               <GridPane.margin>
+                                   <Insets bottom="5.0" top="5.0" />
+                               </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="initialPriceField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                               <GridPane.margin>
+                                   <Insets bottom="5.0" top="5.0" />
+                               </GridPane.margin>
+                           </TextField>
+                           <Label text="Additional Mileage Fee:" GridPane.rowIndex="5">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="mileageFeeField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <Label text="Late Fee:" GridPane.rowIndex="14">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="lateFeeField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <Label text="Additional Fees:" GridPane.rowIndex="15">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="additionalFeeField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                            <Label text="Amount Paid:" GridPane.rowIndex="16">
+                                <font>
+                                    <Font name="IBM Plex Sans" size="16.0" />
+                                </font>
+                                <GridPane.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                </GridPane.margin>
+                            </Label>
+                            <TextField fx:id="amountPaidField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                                <font>
+                                    <Font name="IBM Plex Sans" size="16.0" />
+                                </font>
+                                <GridPane.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                </GridPane.margin>
+                            </TextField>
+                            <Label text="Total Amount:" GridPane.rowIndex="17">
+                                <font>
+                                    <Font name="IBM Plex Sans" size="16.0" />
+                                </font>
+                                <GridPane.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                </GridPane.margin>
+                            </Label>
+                            <TextField fx:id="totalAmountField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="17">
+                                <font>
+                                    <Font name="IBM Plex Sans" size="16.0" />
+                                </font>
+                                <GridPane.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                </GridPane.margin>
+                            </TextField>
+                           <Label text="Debt Amount:" GridPane.rowIndex="18">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </Label>
+                           <TextField fx:id="debtAmountField" editable="false" styleClass="text-entry" GridPane.columnIndex="1" GridPane.rowIndex="18">
+                              <font>
+                                 <Font name="IBM Plex Sans" size="16.0" />
+                              </font>
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                        </children>
+                     </GridPane>
+                      <Button fx:id="submitButton" layoutX="297.0" layoutY="609.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="213.0" style="-fx-text-fill: white; -fx-font-size: 28;" styleClass="submit-button" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="609.0">
+                          <font>
+                              <Font name="IBM Plex Sans" size="37.0" />
+                          </font>
+                      </Button>
+                      <Button fx:id="backButton" layoutX="21.0" layoutY="609.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="213.0" style="-fx-text-fill: white; -fx-font-size: 28;" styleClass="danger-button" text="Back" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="609.0">
+                          <font>
+                              <Font name="IBM Plex Sans" size="37.0" />
+                          </font>
+                      </Button>
+                  </children>
+                  <HBox.margin>
+                     <Insets left="10.0" top="10.0" />
+                  </HBox.margin>
+               </AnchorPane>
+            </children>
+         </HBox>
+          </AnchorPane>
+   </center>
+</BorderPane>
